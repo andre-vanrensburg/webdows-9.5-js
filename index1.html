@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Portfolio of Andre van Rensburg">
+    <meta name="author" content="Andre van Rensburg">
+    <title>Portfolio | Andre van Renburg</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui@1.13.2/dist/themes/base/jquery-ui.min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="monitor">
+
+  <div id="boot">
+    <div>
+          <p>System Configuration (c) 1998 - 2023 WebDos (Web Disk Operating System [Version 19.87]), <br/>
+     Andre van Rensburg. All rights reserved.</p>
+          <br/>
+          <p>Intel 80386SX CPU at 40MHz<br/>
+          Memory Test : 42291000KB<br/>
+          Detecting IDE Primary Master : Local Storage<br/>
+          Detecting IDE Primary Slave : None<br/>
+          Detecting IDE Secondary Master : None<br/>
+          Detecting IDE Secondary Slave : None</p>
+    </div>
+
+    <div>
+      <img src="img/es.png" data-credit="Property of ENERGY STAR&#174;">
+    </div>
+     
+    <div class="footer">
+    <p>Press Del to enter setup.<br/>
+    15/04/87-dsakd32r.43834ksa.134931</p>
+    </div>
+  </div>
+
+  <div id="prompt">
+    <table class="table">
+    <tr>
+    <th colspan="2">System Configuration (c) 1998 - 2023 WebDos (Web disk Operating System [Version 19.87]), Andre van Rensburg. All rights reserved.</th>
+    </tr>
+    <tr>
+    <td>Main Processor: 80386SX</td><td>Base Memory Size: 42291000KB</td>
+    </tr>
+    <tr rowspan="2">
+    <td>Numeric Processor: 80387SX</td><td>Extended Memory Size: 1408KB</td>
+    </tr>
+    <tr rowspan="2">
+    <td>Cache Size: 64KB</td><td>Hard Disk Type: Local Storage</td>
+    </tr>
+    <tr rowspan="2">
+    <td>BIOS Date: 15/04/87</td><td>Display Type: VGA</td>
+    </tr>
+    </table>
+    <div>
+        <p>Type "start" and hit enter to start Webdows 9.5</p>
+        <p>WebDos:\><input type="text" name="key" id="key" autofocus></p>
+     </div>
+    </div>
+    </div>
+    </div>
+  </div>
+
+  <div id="loading"></div>
+
+<div class="icon-content about" title="About me" data-title="About me" data-modal="#mainModal">
+<img src="img/aboutme.png" width="50px" height="50px" data-title="About me">
+<a data-title="About me">About Me</a>
+</div>
+
+<div class="icon-content cv" title="My CV" data-title="My CV" data-modal="#mainModal">
+<img src="img/cv.png" width="50px" height="50px" data-title="My CV">
+<a data-title="My CV">My CV</a>
+</div>
+
+<div class="icon-content portfolio" title="My Portfolio" data-title="My Portfolio" data-modal="#mainModal">
+<img src="img/portfolio.png" width="50px" height="50px" data-title="My Portfolio">
+<a data-title="My Portfolio">My Portfolio</a>
+</div>
+
+<div class="window" id="mainModal">
+   <div class="titlebar">
+        <span class="title"></span>
+       <div class="titlebar-buttons">
+          <div class="titlebar-button min"></div>
+          <div class="titlebar-button max"></div>
+          <div class="titlebar-button close"></div>
+      </div>
+  </div>
+  <div class="content-body">
+     <div class="content">
+     </div>
+  </div>
+  <div class="footer-buttons">
+      <button class="button ok">OK</button>
+  </div>
+</div>
+
+ <div class="taskbar" title="Start">
+      <div class="start-button button">
+         Start
+      </div>
+      <div class="task" id="task">Modal title</div>
+      <div class="taskbar-time">
+        <i class="devicon-react-original" title="View in React"></i>
+        <i class="devicon-vuejs-plain" title="View in Vue"></i>
+        <i class="devicon-angularjs-plain" title="View in Angular"></i>
+        <i class="devicon-svelte-plain" title="View in Svelte"></i>
+        <p class="taskbar-time-text" id="timetip">
+        </p>
+      </div>
+    </div>
+
+       <div class="start-menu">
+       <div class="start-menu-side">
+         <div class="start-menu-side-text text">
+           <p class="ninefive">9.5</p>
+           <p class="windows">Webdows</p>
+         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="100%" height="auto" />
+         </div>
+       </div>
+
+       <div class="start-menu-items">
+
+         <ul class="start-menu-items-list1">
+           <a class="start-menu-items-item-title" data-title="About Me" title="About Me">
+            <li class="start-menu-items-item">
+            <div class="icon"/><img src="img/aboutme.png" width="100%" height="auto" /></div>
+             <p>About <span class="underline">M</span>e</p>
+            </li>
+            </a>
+           <a class="start-menu-items-item-title" data-title="My CV" title="My CV">
+            <li class="start-menu-items-item">
+            <div class="icon"/><img src="img/cv.png" width="100%" height="auto" /></div>
+             <p>My <span class="underline">C</span>V</p>
+            </li>
+            </a>
+            <a class="start-menu-items-item-title" data-title="My Portfolio" title="My Portfolio">
+            <li class="start-menu-items-item">
+            <div class="icon"/><img src="img/portfolio.png" width="100%" height="auto" /></div>
+             <p>My <span class="underline">P</span>ortfolio</p>
+            </li>
+            </a>
+         </ul>
+
+         <ul class="start-menu-items-list2">
+           <a href="#" id="app" class="start-menu-items-item-title" title="App" data-title="App" data-modal="#mainModal">
+            <li class="start-menu-items-item">
+            <div class="icon"/><img src="img/about.png" width="100%" height="auto" /></div>
+             <p><span class="underline">A</span>bout...</p>
+            </li>
+            </a>
+           <a href="#" class="start-menu-items-item-title shutdown" title="Shut down" id="shutdown">
+            <li class="start-menu-items-item">
+            <div class="icon"/><img src="img/shutdown.png" width="100%" height="auto" /></div>
+             <p>Sh<span class="underline">u</span>t Down... </p>
+            </li>
+            </a>
+         </ul>
+
+       </div>
+    </div>
+
+    <audio id="welcome">
+      <source src="mp3/win95.mp3" type="audio/mpeg">
+    </audio>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-ui@1.13.2/dist/jquery-ui.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

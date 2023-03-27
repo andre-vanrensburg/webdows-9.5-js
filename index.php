@@ -1,7 +1,3 @@
-<?php
-session_start();
-if ($_SESSION["verified"]) {
-?>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -375,8 +371,3 @@ $('.navbar-collapse ul li a').click(function() {
 </script>
 </body>
 </html>
-<?php
-} else {
-  header("Location: /wos.php?continue=" . $_SERVER["SCRIPT_NAME"]);
-}
-?>

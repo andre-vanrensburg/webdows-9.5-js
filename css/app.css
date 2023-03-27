@@ -1,0 +1,350 @@
+:root {
+  font-family: "Consolas", sans-serif;
+  font-size: 15px;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  color:#fff;
+}
+
+.monitor {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #008080;
+  margin: auto;
+  font-family: tahoma;
+  color: #000000;
+  display: grid;
+  overflow: hidden;
+}
+
+#boot {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  padding-left: 10px;
+  background-color: #000000;
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 90% 10%;
+  color:#fff;
+  z-index: 40;
+}
+
+#boot img {
+  filter: invert(100%);
+  width: 80%;
+  padding-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#prompt {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+  padding: 10px 0px 0px 10px;
+  color:#fff;
+  background-color:#000;
+  z-index: 30;
+}
+
+#loading {
+  z-index: 20;
+  overflow: hidden;
+  background: url("../img/loading.png") no-repeat center center fixed; 
+  background-size: cover;
+  display: grid;
+  height: 100vh;
+  justify-content: center;
+}
+  
+table {
+  width: 98%;
+  border: 1px solid #ffffff;
+  color: #fff;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 5px;
+  text-align: center;
+  border: 1px solid #ffffff;
+  color: #fff;
+  height: 1.1rem;
+}
+
+table > tbody > tr > td {
+  width: 50%;
+  text-align: left;
+  padding: 5px;
+  border: 1px solid #ffffff;
+  color: #fff;
+}
+
+input, input:focus, input:focus-within, input:active, input:hover {
+  border: none;
+  outline: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 1vw;
+}
+
+a {
+color: #000000;
+text-decoration: none !important;
+}
+
+  .underline {
+      text-decoration: underline;
+}
+.button {
+    background: #c3c6cd;
+    border: outset 2px; 
+    position: relative;
+    border-top: 2px solid #deebf3;
+    border-left: 2px solid #deebf3;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: center;
+    margin: 3px;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.button:active {
+  border: inset 2px;
+}
+.task {
+  display: none;
+  position:absolute;
+  left: 50px;
+  border: inset 2px;
+  background: #c3c6cd;
+      margin: 3px;
+      text-align: center;
+          padding: 4px;
+      font-size: 14px;
+      font-weight: bold;
+}
+
+.icon-content {
+        padding: 10px;
+        position: absolute;
+        height: 150px;
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+.icon-content a {
+      color: white;
+      font-size: 15px;
+      margin-top: 5px;
+      margin-bottom: 0;
+          text-align: center;
+}
+.about {
+        top: 10px;
+}
+.cv {
+        top: 110px;
+}
+.portfolio {
+        top: 210px;
+}
+
+  .taskbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 35px;
+      background: #c3c6cd;
+      border-top: 3px solid #deebf3;
+      display: flex;
+      justify-content: space-between;
+}
+  .taskbar-time {
+      height: 72%;
+      background: #c3c6cd;
+      border-top: 2px solid #85888f;
+      border-left: 2px solid #85888f;
+      border-right: 2px solid #deebf3;
+      border-bottom: 2px solid #deebf3;
+      margin: 3px;
+      display: flex;
+      align-items: center;
+}
+.taskbar-time i {
+          padding: 3px;
+}
+  .taskbar-time-text {
+      margin: auto;
+      font-size: 12px;
+          padding: 3px;
+}
+  .start-button {
+      background: #c3c6cd;
+      margin: 3px;
+      text-align: center;
+          padding: 4px;
+      font-size: 14px;
+      font-weight: bold;
+}
+  .start-menu {
+      background: #c3c6cd;
+      border-top: 2px solid #deebf3;
+      border-left: 2px solid #deebf3;
+      border-right: 2px solid black;
+      border-bottom: 2px solid black;
+      display: none; 
+      position: fixed;
+      bottom: 35px;
+  grid-template-areas:
+    'menuside menuitems';
+  grid-template-columns: 15% 85%;
+  width: 50%;
+}
+  .start-menu-side {
+      background: #85888f;
+          grid-area: menuside;
+}
+  .start-menu-side-text {
+      position: relative;
+}
+  .start-menu-side-text .windows {
+      font-weight: bold;
+      color: #c3c6cd;
+      transform: rotate(270deg);
+}
+  .start-menu-side-text .ninefive {
+      font-weight: bold;
+          color: white;
+      transform: rotate(270deg);
+      margin-bottom: 60px;
+}
+  .start-menu-items {
+      padding: 0;
+          grid-area: menuitems;
+}
+  .start-menu-items .icon {
+      width: 30px;
+      height: 30px;
+      padding-left: 5px;
+      padding-right: 5px;
+}
+  .start-menu-items-item {
+      font-size: 12px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+}
+  .start-menu-items-item:hover {
+      background: #00207d;
+          color: #ffffff;
+}
+  .start-menu-items-list1 {
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid #85888f;
+}
+  .start-menu-items-list2 {
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid #deebf3;
+}
+.window {
+  display: none;
+  position: absolute;
+  background: #c0c0c0;
+  width: 80%;
+  min-height: 200px;
+  border: outset 2px;
+  flex-direction: column;
+  overflow: auto;
+  resize: both;
+}
+.window .titlebar {
+  background: #000080;
+  height: 26px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 22px;
+  padding-left: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.titlebar-buttons {
+    display: flex;
+}
+.footer-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 10px;
+}
+.titlebar-button {
+    background: #c0c0c0;
+    position: relative;
+    height: 16px;
+    width: 16px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #fff #000 #000 #fff;
+    margin-right: 1px;
+    margin-top: 2px;
+}
+.titlebar-button:active {
+  border: inset 1px;
+}
+.min:after {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpath d='M5 10h6v2H5z'/%3E%3C/svg%3E") no-repeat center center;
+  }
+
+.max:after {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpath d='M4 4v8h9V4H4zm1 2h7v5H5V6z'/%3E%3C/svg%3E") no-repeat center center;
+  }
+
+.close:after {
+    background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 16' width='9' height='8'%3E%3Cpath d='M0 1l7 7-7 7h4l5-5 5 5h4l-7-7 7-7h-4L9 6 4 1z'/%3E%3C/svg%3E") no-repeat center center;
+  }
+
+.content-body {
+  top: 22px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 15px;
+  overflow-y: scroll;
+}
+
+.content {
+  top: 22px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 10px;
+  overflow: hidden;
+  min-height: 250px;
+}
+
+.maximize {
+  position: fixed;
+  top: 0px !important;
+  left: -1px !important;
+  width: 100%;
+  height: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  .start-menu {
+    width: 20%;
+    }
+}
