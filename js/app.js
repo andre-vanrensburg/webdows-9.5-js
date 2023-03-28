@@ -148,21 +148,16 @@ $(function () {
       $(".content").html(`
       <div class="banner"></div>
       <hr>
-  <p>I have been fascinated by computers since I was 10 years old. My first experience with programming was using QBASIC on a 386 MS-DOS machine, and by the age of 11, I had written my first program.</p>
-  
-  <p>I have over two decades of experience in the IT field, including hardware repair, software development, end-user support, graphic design, and management. I am currently employed by the South African Government as an IT Engineer and Web Developer, and also work as a freelance developer part-time.</p>
-  
-  <p>In my free time, I enjoy spending time with my family, playing guitar, watching professional skateboarding, or feeding my addiction to playing chess 😄</p>
-  </p>
+      <p>About you here... 😄</p>
   `);
     }
 
     if (myVal === "My CV") {
-      $(".content").html("");
+      $(".content").html("<p>Your CV here... 😄</p>");
     }
 
     if (myVal === "My Portfolio") {
-      $(".content").html("");
+      $(".content").html("<p>Your Portfolio here... 😄</p>");
     }
 
     if (myVal === "App") {
@@ -171,7 +166,6 @@ $(function () {
       <p>Webdows 9.5 V.29.02</p>
       <hr>
       <p>JavaScript version (no frameworks). To view this app in framework versions (React, Vue, Angular and Svelte), simply click on Start, Shut down and select the preferred boot method. (Coming soon)</p>
-      <p>By Andre van Rensburg</p>
       <hr>
      `);
     }
