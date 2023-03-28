@@ -94,6 +94,12 @@ input, input:focus, input:focus-within, input:active, input:hover {
   font-size: 1vw;
 }
 
+.fa, .fas, .fa-solid, .fa-regular {
+  font-weight: 300;
+  color: #000;
+  font-size: 1em;
+}
+
 a {
 color: #000000;
 text-decoration: none !important;
@@ -265,10 +271,11 @@ text-decoration: none !important;
   position: absolute;
   background: #c0c0c0;
   width: 80%;
-  min-height: 200px;
+  height: 80%;
+  min-height: 300px;
   border: outset 2px;
   flex-direction: column;
-  overflow: auto;
+  overflow: hidden;
   resize: both;
 }
 .window .titlebar {
@@ -277,7 +284,6 @@ text-decoration: none !important;
   border: none;
   color: #fff;
   font-size: 14px;
-  line-height: 22px;
   padding-left: 5px;
   display: flex;
   justify-content: space-between;
@@ -289,6 +295,7 @@ text-decoration: none !important;
     display: flex;
     flex-direction: row-reverse;
     padding: 10px;
+    height: 40px;
 }
 .titlebar-button {
     background: #c0c0c0;
@@ -300,6 +307,7 @@ text-decoration: none !important;
     border-color: #fff #000 #000 #fff;
     margin-right: 1px;
     margin-top: 2px;
+    text-align: center;
 }
 .titlebar-button:active {
   border: inset 1px;
@@ -318,21 +326,26 @@ text-decoration: none !important;
 
 .content-body {
   top: 22px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  padding: 15px;
+  height: 100%;
+  width: 100%;
   overflow-y: scroll;
+  min-height: 300px;
 }
 
 .content {
-  top: 22px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  height: 100%;
+  min-height: 300px;
   padding: 10px;
-  overflow: hidden;
-  min-height: 250px;
+}
+
+.banner {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url("../img/qbasic.png");
+  height: 50%;
+  width: 100%;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
 .maximize {
@@ -346,5 +359,9 @@ text-decoration: none !important;
 @media only screen and (min-width: 600px) {
   .start-menu {
     width: 20%;
-    }
+  }
+
+  /* .window {
+   width: 50%;
+  } */
 }

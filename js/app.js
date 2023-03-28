@@ -1,4 +1,5 @@
 $(function () {
+  // Handle bootscreen
   setTimeout(function () {
     $("#boot").hide();
     typeWriter();
@@ -14,6 +15,7 @@ $(function () {
     $("#welcome")[0].play();
   }, 8000);
 
+  // Typing start
   var i = 0;
   var txt = "start";
   var speed = 150;
@@ -26,11 +28,11 @@ $(function () {
     }
   }
 
-  // time tooltip
+  // Time tooltip
   var timeTip = new Date().toLocaleDateString();
   document.getElementById("timetip").setAttribute("title", timeTip);
 
-  // clock
+  // Clock
   function startTime() {
     var today = new Date();
     var h = today.getHours();
@@ -61,7 +63,7 @@ $(function () {
 
   startTime();
 
-  // start menu
+  // Start menu
   $(".start-button").click(function () {
     if ($(".start-menu").css("display") == "none") {
       $(".start-menu").css("display", "grid");
@@ -70,7 +72,7 @@ $(function () {
     }
   });
 
-  // active window
+  // Active window
   $(".task").click(function () {
     if ($("#mainModal").css("display") == "flex") {
       $("#mainModal").css("display", "none");
@@ -87,6 +89,7 @@ $(function () {
     }
   });
 
+  // Minimize window
   $(".min").click(function () {
     $("#mainModal").toggle();
     $(".task").css({
@@ -98,10 +101,12 @@ $(function () {
     });
   });
 
+  // Maximize window
   $(".max").click(function () {
     $(".window").toggleClass("maximize");
   });
 
+  // Close window
   $(".close, .ok").click(function () {
     $(".start-menu").css("display", "none");
     $("#mainModal").css("display", "none");
@@ -117,6 +122,12 @@ $(function () {
     handle: ".titlebar",
   });
 
+  // Shutdown (Reload)
+  $(".shutdown").click(function () {
+    location.reload();
+  });
+
+  // Open window
   $(".icon-content").dblclick(function () {
     let myVal = $(this).data("title");
     openModal(myVal);
@@ -127,10 +138,7 @@ $(function () {
     openModal(myVal);
   });
 
-  $(".shutdown").click(function () {
-    location.reload();
-  });
-
+  // Handle window content
   function openModal(myVal) {
     $(".start-menu").css("display", "none");
     $("#mainModal").find(".title").text(myVal);
@@ -138,34 +146,31 @@ $(function () {
 
     if (myVal === "About me") {
       $(".content").html(`
-  <img src="img/pp.jpg">
+      <div class="banner"></div>
+      <hr>
   <p>I have been fascinated by computers since I was 10 years old. My first experience with programming was using QBASIC on a 386 MS-DOS machine, and by the age of 11, I had written my first program.</p>
   
-  <p>I have over two decades of experience in the IT field, including hardware repair, software development, end-user support, graphic design, and management. I am currently employed by the South African Government as an IT Engineer and Web Developer, and also work as a freelance developer part-time. </p>
+  <p>I have over two decades of experience in the IT field, including hardware repair, software development, end-user support, graphic design, and management. I am currently employed by the South African Government as an IT Engineer and Web Developer, and also work as a freelance developer part-time.</p>
   
-  <p>In my free time, I enjoy spending time with my family, playing guitar, watching professional skateboarding, playing chess, and exploring new technologies such as graphic design, digital marketing, and block chain development. I am currently working on an NFT project to honour the late Nelson Mandela.</p>
+  <p>In my free time, I enjoy spending time with my family, playing guitar, watching professional skateboarding, or feeding my addiction to playing chess 😄</p>
   </p>
   `);
     }
 
     if (myVal === "My CV") {
-      $(".content").html(
-        ' <embed src="pdf/fullcv.pdf" width="100%" height="100%" />'
-      );
+      $(".content").html("");
     }
 
     if (myVal === "My Portfolio") {
-      $(".content").html(
-        ' <embed src="pdf/poe.pdf" width="100%" height="100%" />'
-      );
+      $(".content").html("");
     }
 
     if (myVal === "App") {
       $(".content").html(`
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="10%" height="auto" />
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="30%" height="auto" />
       <p>Webdows 9.5 V.29.02</p>
       <hr>
-      <p>JavaScript version (no frameworks). To view this app in framework versions (React, Vue, Angular and Svelte), simply click on Start, Shut down and select the preferred boot method.</p>
+      <p>JavaScript version (no frameworks). To view this app in framework versions (React, Vue, Angular and Svelte), simply click on Start, Shut down and select the preferred boot method. (Coming soon)</p>
       <p>By Andre van Rensburg</p>
       <hr>
      `);
