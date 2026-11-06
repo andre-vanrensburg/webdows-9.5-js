@@ -179,6 +179,11 @@
 <a>About Me</a>
 </div>
 
+<div class="icon-content mines" title="Minesweeper" data-app="minesweeper" tabindex="0">
+<img src="img/minesweeper.svg" width="50" height="50" alt="">
+<a>Minesweeper</a>
+</div>
+
 
 <!-- Window template: one copy is cloned per open app -->
 <template id="tpl-window">
@@ -220,6 +225,8 @@
   </fieldset>
 </template>
 
+<template id="app-minesweeper" data-title="Minesweeper"></template>
+
 <template id="app-app" data-title="About Webdows">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="20%" height="auto" />
   <p><strong>Webdows 9.5</strong> V.29.02</p>
@@ -256,27 +263,52 @@
        <div class="start-menu-items">
 
          <ul class="start-menu-items-list1">
-           <a class="start-menu-items-item-title" title="About me" data-app="about">
-            <li class="start-menu-items-item">
+          <li class="start-menu-items-item has-sub" >
+            <div class="icon"><i class="fa-solid fa-folder-open"></i></div>
+            <p><span class="underline">P</span>rograms</p><span class="arrow">&#9654;</span><ul class="submenu"><li class="start-menu-items-item sub-item" data-app="minesweeper"><div class="icon"><img src="img/minesweeper.svg" alt="" width="100%" height="auto" /></div><p>Minesweeper</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-terminal"></i></div><p>WebDos Prompt</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-file-lines"></i></div><p>Notepad</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-paintbrush"></i></div><p>Paint</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-calculator"></i></div><p>Calculator</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-globe"></i></div><p>Web Browser</p></li></ul>
+          </li>
+          <li class="start-menu-items-item has-sub" >
+            <div class="icon"><i class="fa-solid fa-file"></i></div>
+            <p><span class="underline">D</span>ocuments</p><span class="arrow">&#9654;</span><ul class="submenu"><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-gear"></i></div><p>autoexec.bat</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-file-lines"></i></div><p>readme.txt</p></li></ul>
+          </li>
+          <li class="start-menu-items-item has-sub" >
+            <div class="icon"><i class="fa-solid fa-gear"></i></div>
+            <p><span class="underline">S</span>ettings</p><span class="arrow">&#9654;</span><ul class="submenu"><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-sliders"></i></div><p>Control Panel</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-print"></i></div><p>Printers</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-table-columns"></i></div><p>Taskbar...</p></li></ul>
+          </li>
+          <li class="start-menu-items-item has-sub" >
+            <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <p><span class="underline">F</span>ind</p><span class="arrow">&#9654;</span><ul class="submenu"><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-folder"></i></div><p>Files or Folders...</p></li><li class="start-menu-items-item sub-item" data-curious="1"><div class="icon"><i class="fa-solid fa-desktop"></i></div><p>Computer...</p></li></ul>
+          </li>
+          <li class="start-menu-items-item" data-curious="1">
+            <div class="icon"><i class="fa-solid fa-circle-question"></i></div>
+            <p><span class="underline">H</span>elp</p>
+          </li>
+          <li class="start-menu-items-item" data-curious="1">
+            <div class="icon"><i class="fa-solid fa-person-running"></i></div>
+            <p><span class="underline">R</span>un...</p>
+          </li>
+         </ul>
+
+         <ul class="start-menu-items-list1">
+          <li class="start-menu-items-item" data-app="about">
             <div class="icon"><img src="img/aboutme.png" alt="" width="100%" height="auto" /></div>
-             <p>About <span class="underline">M</span>e</p>
-            </li>
-            </a>
+            <p>About <span class="underline">M</span>e</p>
+          </li>
+          <li class="start-menu-items-item" data-app="minesweeper">
+            <div class="icon"><img src="img/minesweeper.svg" alt="" width="100%" height="auto" /></div>
+            <p>Mine<span class="underline">s</span>weeper</p>
+          </li>
          </ul>
 
          <ul class="start-menu-items-list2">
-           <a href="#" id="app" class="start-menu-items-item-title" title="About Webdows" data-app="app">
-            <li class="start-menu-items-item">
+          <li class="start-menu-items-item" data-app="app">
             <div class="icon"><img src="img/about.png" alt="" width="100%" height="auto" /></div>
-             <p><span class="underline">A</span>bout...</p>
-            </li>
-            </a>
-           <a href="#" class="start-menu-items-item-title shutdown" title="Shut down" id="shutdown">
-            <li class="start-menu-items-item">
+            <p><span class="underline">A</span>bout...</p>
+          </li>
+          <li class="start-menu-items-item" id="shutdown">
             <div class="icon"><img src="img/shutdown.png" alt="" width="100%" height="auto" /></div>
-             <p>Sh<span class="underline">u</span>t Down... </p>
-            </li>
-            </a>
+            <p>Sh<span class="underline">u</span>t Down...</p>
+          </li>
          </ul>
 
        </div>
@@ -288,6 +320,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-ui@1.13.2/dist/jquery-ui.min.js"></script>
+<script src="js/minesweeper.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>

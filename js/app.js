@@ -211,22 +211,44 @@ $(function () {
   });
 
   $(document).on("click", function (e) {
-    if (!$(e.target).closest(".start-menu").length) {
-      $(".start-menu").css("display", "none");
+    if (!$(e.target).closest(".start-menu").length) closeStartMenu();
+  });
+
+  // Start menu items: real apps open, everything else gets the curious-mind treatment
+  $(".start-menu").on("click", "li", function (e) {
+    e.stopPropagation();
+    var $li = $(this);
+    if ($li.hasClass("has-sub")) {
+      // Touch screens can't hover, so a tap toggles the flyout
+      $(".start-menu li.has-sub").not($li).removeClass("sub-open");
+      $li.toggleClass("sub-open");
+      return;
     }
+    if ($li.is("#shutdown")) {
+      location.reload();
+      return;
+    }
+    closeStartMenu();
+    if ($li.data("app")) openApp($li.data("app"));
+    else if ($li.data("curious")) curiousWindow($li.find("p").first().text().trim());
   });
 
-  $(".start-menu-items ul a:not(#shutdown)").on("click", function (e) {
-    e.preventDefault();
+  function closeStartMenu() {
     $(".start-menu").css("display", "none");
-    openApp($(this).data("app"));
-  });
+    $(".start-menu li.has-sub").removeClass("sub-open");
+  }
 
-  // Shutdown (Reload)
-  $(".shutdown").on("click", function (e) {
-    e.preventDefault();
-    location.reload();
-  });
+  function curiousWindow(name) {
+    openApp("curious", {
+      title: "Webdows",
+      html:
+        '<div class="curious"><i class="fa-solid fa-circle-info"></i><div>' +
+        "<p><strong>" + $("<span>").text(name).html() + "</strong></p>" +
+        "<p>You curious mind, you.</p>" +
+        "<p>I never set out to rebuild all of Windows. Webdows runs About Me, Minesweeper and this message, and that's the whole operating system.</p>" +
+        "</div></div>"
+    });
+  }
 
   // ---- Desktop icons -------------------------------------------------------
   $(".icon-content").draggable({ handle: "img" });
@@ -306,8 +328,18 @@ $(function () {
 
     var offset = (cascade++ % 5) * 28;
     $win.css({ top: 20 + offset + "px", left: 40 + offset + "px" });
-    if (app === "app" || app === "soon") $win.addClass("small");
-    if (isSmall()) $win.addClass("maximize");
+    if (app === "app" || app === "soon" || app === "curious") $win.addClass("small");
+    if (app === "minesweeper") {
+      $win.addClass("fit");
+      $win.find(".max").remove();
+      $win.find(".footer-buttons").remove();
+      $win.find(".content").empty();
+      var game = window.Minesweeper.mount($win.find(".content")[0], {
+        onExit: function () { closeWindow($win); }
+      });
+      $win.data("game", game);
+    }
+    if (isSmall() && app !== "minesweeper") $win.addClass("maximize");
 
     $(".taskbar").before($win);
     $win.draggable({ handle: ".titlebar", containment: "body" });
@@ -329,6 +361,7 @@ $(function () {
   }
 
   function closeWindow($win) {
+    if ($win.data("game")) $win.data("game").destroy();
     $('#tasks .task[data-app="' + $win.data("app") + '"]').remove();
     $win.remove();
   }
