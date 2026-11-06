@@ -150,7 +150,7 @@ $(function () {
   // Esc skips the boot sequence; typing "start" + Enter jumps straight in
   $(document).on("keydown", function (e) {
     if (inBios) return;
-    if (!booted && $("#boot").is(":visible") && (e.key === "Delete" || e.key === "Del")) {
+    if (!booted && ($("#boot").is(":visible") || $("#prompt").is(":visible")) && (e.key === "Delete" || e.key === "Del")) {
       e.preventDefault();
       enterBios();
       return;
