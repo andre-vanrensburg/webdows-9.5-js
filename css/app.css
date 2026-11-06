@@ -340,7 +340,8 @@ text-decoration: none !important;
 
 .banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url("../img/qbasic.png");
-  height: 50%;
+  height: 40vh;
+  min-height: 160px;
   width: 100%;
   background-position: top;
   background-repeat: no-repeat;
