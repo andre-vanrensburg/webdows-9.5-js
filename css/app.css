@@ -172,6 +172,7 @@ text-decoration: none !important;
       background: #c3c6cd;
       border-top: 3px solid #deebf3;
       display: flex;
+      z-index: 9000;
       justify-content: space-between;
 }
   .taskbar-time {
@@ -210,6 +211,7 @@ text-decoration: none !important;
       display: none; 
       position: fixed;
       bottom: 35px;
+      z-index: 9001;
   grid-template-areas:
     'menuside menuitems';
   grid-template-columns: 15% 85%;
