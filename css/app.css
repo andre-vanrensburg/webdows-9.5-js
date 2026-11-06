@@ -586,6 +586,10 @@ table.bios-table > tbody > tr > td.bios-val {
   cursor: default;
 }
 .icon-content:focus {
+  outline: none;
+}
+.icon-content:focus a {
+  background: #000080;
   outline: 1px dotted #fff;
 }
 
