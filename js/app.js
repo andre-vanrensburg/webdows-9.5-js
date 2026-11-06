@@ -342,6 +342,13 @@ $(function () {
     if (isSmall() && app !== "minesweeper") $win.addClass("maximize");
 
     $(".taskbar").before($win);
+    // Small, fixed-size windows open centred rather than under the pointer
+    if ($win.hasClass("fit") || $win.hasClass("small")) {
+      $win.css({
+        left: Math.max(0, (window.innerWidth - $win.outerWidth()) / 2) + "px",
+        top: Math.max(0, (window.innerHeight - 40 - $win.outerHeight()) / 3) + "px"
+      });
+    }
     $win.draggable({ handle: ".titlebar", containment: "body" });
     $win.css("display", "flex");
 

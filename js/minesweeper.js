@@ -302,6 +302,11 @@
 
     // ---- Input ----
     var pressTimer = null, longPressed = false;
+    // Ignore stray clicks left over from the double-click that opened the window
+    var mountedAt = Date.now();
+    function tooSoon() {
+      return Date.now() - mountedAt < 400;
+    }
 
     grid.addEventListener("contextmenu", function (e) {
       e.preventDefault();
@@ -309,7 +314,7 @@
 
     grid.addEventListener("mousedown", function (e) {
       var t = e.target.closest(".ms-cell");
-      if (!t || state === "won" || state === "lost") return;
+      if (!t || state === "won" || state === "lost" || tooSoon()) return;
       if (e.button === 0) setFace("oh");
       if (e.button === 2) mark(+t.dataset.i);
       if (e.button === 1) {
@@ -328,7 +333,7 @@
         return;
       }
       var t = e.target.closest(".ms-cell");
-      if (t) open(+t.dataset.i);
+      if (t && !tooSoon()) open(+t.dataset.i);
     });
 
     // Touch: long-press to flag
