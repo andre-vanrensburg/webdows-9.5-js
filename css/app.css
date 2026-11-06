@@ -30,7 +30,7 @@
   grid-template-columns: 70% 30%;
   grid-template-rows: 90% 10%;
   color:#fff;
-  z-index: 40;
+  z-index: 9600;
 }
 
 #boot img {
@@ -50,11 +50,13 @@
   padding: 10px 0px 0px 10px;
   color:#fff;
   background-color:#000;
-  z-index: 30;
+  z-index: 9500;
 }
 
 #loading {
-  z-index: 20;
+  position: fixed;
+  inset: 0;
+  z-index: 9400;
   overflow: hidden;
   background: url("../img/loading.png") no-repeat center center fixed; 
   background-size: cover;
@@ -364,7 +366,7 @@ text-decoration: none !important;
   display: none;
   position: absolute;
   inset: 0;
-  z-index: 50;
+  z-index: 9700;
   background: #000;
   color: #aaaaaa;
   font-family: "Consolas", "Courier New", monospace;
