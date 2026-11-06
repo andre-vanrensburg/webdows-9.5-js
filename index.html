@@ -4,27 +4,53 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Portfolio of your name here">
-    <meta name="author" content="Andre van Rensburg">
-    <title>Portfolio | your name here</title>
+    <title>André van Rensburg | Software Developer &amp; MD of WebAcumen</title>
+    <meta name="description" content="Portfolio and CV of André van Rensburg: full-stack developer with 20+ years in IT, Managing Director of WebAcumen Software Development and Hosting.">
+    <meta name="author" content="André van Rensburg">
+    <link rel="canonical" href="https://andrevanrensburg.co.za/">
+
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="André van Rensburg | Software Developer">
+    <meta property="og:description" content="Boot up WebDos and Webdows 9.5 to see my CV and portfolio.">
+    <meta property="og:url" content="https://andrevanrensburg.co.za/">
+    <meta property="og:image" content="https://andrevanrensburg.co.za/img/qbasic.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "André van Rensburg",
+      "url": "https://andrevanrensburg.co.za/",
+      "jobTitle": "Managing Director and Lead Developer",
+      "worksFor": { "@type": "Organization", "name": "WebAcumen Software Development and Hosting", "url": "https://webacumen.co.za/" },
+      "sameAs": [
+        "https://www.linkedin.com/in/andr%C3%A9-van-rensburg/",
+        "https://github.com/andre-vanrensburg"
+      ]
+    }
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="/img/icons8-javascript.svg" />
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui@1.13.2/dist/themes/base/jquery-ui.min.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body class="monitor">
 
+  <noscript>
+    <div class="noscript">
+      <h1>André van Rensburg</h1>
+      <p>Managing Director and lead developer at WebAcumen Software Development and Hosting. 20+ years in IT and software development.</p>
+      <p>This site simulates an old PC booting WebDos and Webdows 9.5, so it needs JavaScript. You can also find me on <a href="https://www.linkedin.com/in/andr%C3%A9-van-rensburg/">LinkedIn</a>.</p>
+    </div>
+  </noscript>
+
   <div id="boot">
     <div>
-          <p>System Configuration (c) 1998 - 2023 WebDos (Web Disk Operating System [Version 19.87]), <br/>
+          <p>System Configuration (c) 1998 - <span class="year">2026</span> WebDos (Web Disk Operating System [Version 19.87]), <br/>
      Andre van Rensburg. All rights reserved.</p>
           <br/>
           <p>Intel 80386SX CPU at 40MHz<br/>
@@ -36,11 +62,11 @@
     </div>
 
     <div>
-      <img src="img/es.png" data-credit="Property of ENERGY STAR&#174;">
+      <img src="img/es.png" alt="" data-credit="Property of ENERGY STAR&#174;">
     </div>
-     
+
     <div class="footer">
-    <p>Press Del to enter setup.<br/>
+    <p>Press Del to enter setup. Press Esc to skip boot.<br/>
     15/04/87-dsakd32r.43834ksa.134931</p>
     </div>
   </div>
@@ -48,70 +74,314 @@
   <div id="prompt">
     <table class="table">
     <tr>
-    <th colspan="2">System Configuration (c) 1998 - 2023 WebDos (Web disk Operating System [Version 19.87]), Andre van Rensburg. All rights reserved.</th>
+    <th colspan="2">System Configuration (c) 1998 - <span class="year">2026</span> WebDos (Web disk Operating System [Version 19.87]), Andre van Rensburg. All rights reserved.</th>
     </tr>
     <tr>
     <td>Main Processor: 80386SX</td><td>Base Memory Size: 42291000KB</td>
     </tr>
-    <tr rowspan="2">
+    <tr>
     <td>Numeric Processor: 80387SX</td><td>Extended Memory Size: 1408KB</td>
     </tr>
-    <tr rowspan="2">
+    <tr>
     <td>Cache Size: 64KB</td><td>Hard Disk Type: Local Storage</td>
     </tr>
-    <tr rowspan="2">
+    <tr>
     <td>BIOS Date: 15/04/87</td><td>Display Type: VGA</td>
     </tr>
     </table>
     <div>
         <p>Type "start" and hit enter to start Webdows 9.5</p>
-        <p>WebDos:\><input type="text" name="key" id="key" autofocus></p>
+        <p>WebDos:\><input type="text" name="key" id="key" autocomplete="off" spellcheck="false" aria-label="WebDos prompt" autofocus></p>
      </div>
+  </div>
+
+  <!-- BIOS setup: only reachable by pressing Del during boot. Modelled on a 1990-era 386 setup utility. Nothing can be changed. -->
+  <div id="bios" aria-hidden="true">
+    <div class="bios-head">
+      <div>BIOS SETUP PROGRAM - <span id="bios-screen-name">WEBBIOS SETUP UTILITIES</span></div>
+      <div>(C) 1987 WebDos Systems, Andre van Rensburg. No Rights Worth Reserving</div>
     </div>
+
+    <!-- 1. Warning screen -->
+    <div class="bios-screen" id="bios-warning">
+      <div class="bios-box">
+        <p class="bios-center">WARNING INFORMATION</p>
+        <p class="bios-center">Improper Use of Setup may Cause Problems!!</p>
+        <p>If System Hangs, Reboot System and Enter Setup by Pressing the &lt;DEL&gt; key</p>
+        <p>Do any of the following After Entering Setup:<br>
+           &nbsp;&nbsp;- Alter Options to make System Work<br>
+           &nbsp;&nbsp;- Load BIOS Setup Defaults<br>
+           &nbsp;&nbsp;- Load Power-On Defaults</p>
+        <p class="bios-center bios-hi">Hit &lt;ESC&gt; to Stop now, Any other key to Continue</p>
+      </div>
     </div>
+
+    <!-- 2. Main menu -->
+    <div class="bios-screen" id="bios-main">
+      <ul class="bios-menu">
+        <li data-act="standard">STANDARD CMOS SETUP</li>
+        <li data-act="locked">ADVANCED CMOS SETUP</li>
+        <li data-act="locked">ADVANCED CHIPSET SETUP</li>
+        <li data-act="locked">AUTO CONFIGURATION WITH BIOS DEFAULTS</li>
+        <li data-act="locked">AUTO CONFIGURATION WITH POWER-ON DEFAULTS</li>
+        <li data-act="locked">CHANGE PASSWORD</li>
+        <li data-act="locked">HARD DISK UTILITY</li>
+        <li data-act="locked">WRITE TO CMOS AND EXIT</li>
+        <li data-act="exit">DO NOT WRITE TO CMOS AND EXIT</li>
+      </ul>
+      <div class="bios-hint" id="bios-hint">Standard CMOS setup for changing time, date, hard disk type, etc.</div>
     </div>
+
+    <!-- 3. Standard CMOS setup (read-only) -->
+    <div class="bios-screen" id="bios-standard">
+      <table class="bios-table">
+        <tr><td>Date (mn/date/year)</td><td>: <span id="bios-date">Mon, Jan 01 1987</span></td></tr>
+        <tr><td>Time (hour/min/sec)</td><td>: <span id="bios-time">00 : 00 : 00</span></td></tr>
+        <tr><td>Hard disk C: type</td><td>: 47 &nbsp;Local Storage</td></tr>
+        <tr><td>Hard disk D: type</td><td>: Not Installed</td></tr>
+        <tr><td>Floppy drive A:</td><td>: 1.2 MB, 5&frac14;"</td></tr>
+        <tr><td>Floppy drive B:</td><td>: 1.44 MB, 3&frac12;"</td></tr>
+        <tr><td>Primary display</td><td>: VGA/PGA/EGA</td></tr>
+        <tr><td>Keyboard</td><td>: Installed</td></tr>
+        <tr><td>Main processor</td><td>: 80386SX, 40 MHz</td></tr>
+        <tr><td>Numeric processor</td><td>: 80387SX</td></tr>
+        <tr><td>Base memory</td><td>: 640 KB</td></tr>
+        <tr><td>Ext. memory</td><td>: 1408 KB</td></tr>
+        <tr><td>Curiosity</td><td>: <span class="bios-hi">Enabled</span></td></tr>
+      </table>
+      <div class="bios-hint">ESC : Exit &nbsp; &uarr;&darr; : Select Item &nbsp; PgUp/PgDn : Modify</div>
+    </div>
+
+    <div class="bios-dialog" id="bios-dialog">
+      <p class="bios-hi">*** ACCESS DENIED ***</p>
+      <p>You curious mind, you.</p>
+      <p>I knew someone would press Del. Nothing in here can be changed, but Curiosity was already enabled, so you're all set.</p>
+      <p class="bios-hi">Hit &lt;ESC&gt; to continue booting</p>
+    </div>
+
+    <div class="bios-foot">ESC : Exit &nbsp;&nbsp; &uarr;&darr; : Sel &nbsp;&nbsp; Enter : Select &nbsp;&nbsp; F10 : Save &amp; Exit</div>
   </div>
 
   <div id="loading"></div>
 
-<div class="icon-content about" title="About me" data-title="About me" data-modal="#mainModal">
-<img src="img/aboutme.png" width="50px" height="50px" data-title="About me">
-<a data-title="About me">About Me</a>
+<div class="icon-content about" title="About me" data-app="about" tabindex="0">
+<img src="img/aboutme.png" width="50" height="50" alt="">
+<a>About Me</a>
 </div>
 
-<div class="icon-content cv" title="My CV" data-title="My CV" data-modal="#mainModal">
-<img src="img/cv.png" width="50px" height="50px" data-title="My CV">
-<a data-title="My CV">My CV</a>
+<div class="icon-content cv" title="My CV" data-app="cv" tabindex="0">
+<img src="img/cv.png" width="50" height="50" alt="">
+<a>My CV</a>
 </div>
 
-<div class="icon-content portfolio" title="My Portfolio" data-title="My Portfolio" data-modal="#mainModal">
-<img src="img/portfolio.png" width="50px" height="50px" data-title="My Portfolio">
-<a data-title="My Portfolio">My Portfolio</a>
+<div class="icon-content portfolio" title="My Portfolio" data-app="portfolio" tabindex="0">
+<img src="img/portfolio.png" width="50" height="50" alt="">
+<a>My Portfolio</a>
 </div>
 
-<div class="window" id="mainModal">
-   <div class="titlebar">
-        <span class="title"></span>
-       <div class="titlebar-buttons">
-          <div class="titlebar-button min"><i class="fa-solid fa-window-minimize"></i></div>
-          <div class="titlebar-button max"><i class="fa-sharp fa-regular fa-square"></i></div>
-          <div class="titlebar-button close"><i class="fa-solid fa-xmark"></i></div>
-      </div>
+<!-- Window template: one copy is cloned per open app -->
+<template id="tpl-window">
+  <div class="window" role="dialog">
+     <div class="titlebar">
+          <span class="title"></span>
+         <div class="titlebar-buttons">
+            <div class="titlebar-button min" title="Minimise"><i class="fa-solid fa-window-minimize"></i></div>
+            <div class="titlebar-button max" title="Maximise"><i class="fa-sharp fa-regular fa-square"></i></div>
+            <div class="titlebar-button close" title="Close"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+    </div>
+    <div class="content-body">
+       <div class="content"></div>
+    </div>
+    <div class="footer-buttons">
+        <button class="button ok">OK</button>
+    </div>
   </div>
-  <div class="content-body">
-     <div class="content">
-     </div>
-  </div>
-  <div class="footer-buttons">
-      <button class="button ok">OK</button>
-  </div>
-</div>
+</template>
 
- <div class="taskbar" title="Start">
-      <div class="start-button button">
+<!-- ===== App content ===== -->
+<template id="app-about" data-title="About me">
+  <div class="banner"></div>
+  <hr>
+  <p>I've been fascinated by computers since I was 10 years old, when I started helping my uncle build and repair them. My first experience with programming was QBASIC on a 386 MS-DOS machine, and by the age of 11 I had written my first program. That blinking cursor is why this site boots the way it does.</p>
+
+  <p>I have more than two decades of experience in IT, covering hardware repair, software development, end-user support, server administration, graphic design and management. I qualified as an IT Service Engineer through my PartServe apprenticeship in 2006, built my first website in 2009, and I've been building for the web ever since.</p>
+
+  <p>Today I'm the Managing Director and lead developer at <a class="link" href="https://webacumen.co.za/" target="_blank" rel="noopener">WebAcumen Software Development and Hosting</a>. We build bespoke web applications, websites and mobile apps and run managed hosting for clients in South Africa, the USA, the UK, Australia and New Zealand. I am also employed by the South African Government as an IT Engineer and Web Developer.</p>
+
+  <p>In my free time I enjoy spending time with my family, playing guitar, watching professional skateboarding, or feeding my addiction to playing chess 😄</p>
+
+  <fieldset class="group">
+    <legend>Find me</legend>
+    <p><i class="devicon-linkedin-plain"></i> <a class="link" href="https://www.linkedin.com/in/andr%C3%A9-van-rensburg/" target="_blank" rel="noopener">LinkedIn</a>
+       &nbsp;&nbsp; <i class="devicon-github-original"></i> <a class="link" href="https://github.com/andre-vanrensburg" target="_blank" rel="noopener">GitHub</a>
+       &nbsp;&nbsp; <i class="fa-solid fa-globe"></i> <a class="link" href="https://webacumen.co.za/" target="_blank" rel="noopener">webacumen.co.za</a></p>
+  </fieldset>
+</template>
+
+<template id="app-cv" data-title="My CV">
+  <div class="cv-head">
+    <h2>André van Rensburg</h2>
+    <p>Managing Director &amp; Lead Developer · Full-stack Software Developer · IT Engineer</p>
+  </div>
+
+  <fieldset class="group">
+    <legend>Profile</legend>
+    <p>Software developer with more than 20 years in IT and a strong focus on web environments. Started on hardware as a qualified IT Service Engineer, moved into web development as the internet became central to business, and now leads development and managed hosting at WebAcumen.</p>
+  </fieldset>
+
+  <fieldset class="group">
+    <legend>Experience</legend>
+
+    <div class="job">
+      <div class="job-head"><strong>Managing Director &amp; Lead Developer</strong> <span>2011 – Present</span></div>
+      <div class="job-org">WebAcumen Software Development and Hosting</div>
+      <p>Lead full-stack development of bespoke web applications, websites and mobile apps (Next.js, React, Node.js, WordPress). Run our managed cPanel/WHM hosting platform, email and domains, and look after client Microsoft 365 tenants. Clients in South Africa, the USA, the UK, Australia and New Zealand.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><strong>Web Developer / I.T Technician</strong> <span>Jun 2014 – Present</span></div>
+      <div class="job-org">Department of Higher Education and Training (DHET)</div>
+      <p>Design, development, content management, SEO, web performance optimisation and server administration. End-user support for campus staff and students, repairs to computers and peripherals, lab maintenance, training, fault finding, reporting and supplier liaison.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><strong>Web Developer</strong> <span>Jul 2013 – Jun 2014</span></div>
+      <div class="job-org">Azuraweb · Port Elizabeth</div>
+      <p>Designed and developed client websites, scoped and planned projects, and administered web and email hosting and client accounts.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><strong>I.T Technician / Web Developer / Graphic Designer</strong> <span>Feb 2011 – Jun 2013</span></div>
+      <div class="job-org">Online IT Solutions</div>
+      <p>Diagnosed and repaired printers, scanners, projectors, monitors, laptops and desktops. Designed and built client websites, presentations and sales posters, and administered web and email hosting.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><strong>Technical Manager (Shareholder)</strong> <span>Jun 2009 – Jan 2011</span></div>
+      <div class="job-org">TML Computers</div>
+      <p>Ran the workshop: estimates, spares ordering and allocation, job cards and reports. Designed the company website, logo and corporate identity, email campaigns and sales material.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><strong>Workshop Team Leader</strong> <span>Mar 2008 – Jun 2009</span></div>
+      <div class="job-org">PartServe Channel Support (Pty) Ltd</div>
+      <p>Departmental promotion. Managed workshop clients, estimates, spares and the stockroom, and supervised, advised and trained service engineers.</p>
+    </div>
+
+    <div class="job">
+      <div class="job-head"><strong>Service Engineer</strong> <span>Feb 2006 – Mar 2008</span></div>
+      <div class="job-org">PartServe Channel Support (Pty) Ltd</div>
+      <p>Diagnosed, serviced and repaired printers, scanners, projectors, LCD monitors, PlayStations, laptops and desktops, including full unit and spare-part refurbishment.</p>
+    </div>
+  </fieldset>
+
+  <fieldset class="group">
+    <legend>Skills</legend>
+    <div class="skills">
+      <span><i class="devicon-html5-plain"></i> HTML</span>
+      <span><i class="devicon-css3-plain"></i> CSS</span>
+      <span><i class="devicon-javascript-plain"></i> JavaScript</span>
+      <span><i class="devicon-typescript-plain"></i> TypeScript</span>
+      <span><i class="devicon-react-original"></i> React</span>
+      <span><i class="devicon-nextjs-plain"></i> Next.js</span>
+      <span><i class="devicon-nodejs-plain"></i> Node.js</span>
+      <span><i class="devicon-php-plain"></i> PHP</span>
+      <span><i class="devicon-mysql-plain"></i> SQL / MySQL</span>
+      <span><i class="devicon-wordpress-plain"></i> WordPress</span>
+      <span><i class="devicon-jquery-plain"></i> jQuery</span>
+      <span><i class="devicon-android-plain"></i> Android</span>
+      <span><i class="devicon-linux-plain"></i> cPanel / WHM</span>
+      <span><i class="devicon-windows8-original"></i> Windows Server, AD, IIS, Hyper-V</span>
+      <span><i class="fa-solid fa-envelope"></i> Microsoft 365</span>
+      <span><i class="fa-solid fa-magnifying-glass-chart"></i> SEO &amp; performance</span>
+      <span><i class="devicon-illustrator-plain"></i> Illustrator / CorelDRAW</span>
+      <span><i class="fa-solid fa-screwdriver-wrench"></i> Hardware repair</span>
+    </div>
+  </fieldset>
+
+  <fieldset class="group">
+    <legend>Qualifications &amp; certifications</legend>
+    <ul class="certs">
+      <li><strong>IT Service Engineer</strong> (apprenticeship), PartServe, 2006</li>
+      <li>Fundamentals of Digital Marketing, Google, 2022</li>
+      <li>Certified Business Analysis Professional: CBAP (BABOK Guide V3.0 aligned), IT Academy, 2022</li>
+      <li>Certified Associate in Project Management: CAPM Sixth Edition, IT Academy, 2022</li>
+      <li>CompTIA Project+ PK0-004, IT Academy, 2022</li>
+      <li>MTA Security Fundamentals 98-367, IT Academy, 2022</li>
+      <li>Management Essentials, Leading Teams, Business Ethics, Optimizing Your Performance on a Team, Accounting for Non-Financial Professionals, IT Academy, 2022</li>
+    </ul>
+  </fieldset>
+</template>
+
+<template id="app-portfolio" data-title="My Portfolio">
+  <p>A selection of work. Most of it was built with the team at WebAcumen.</p>
+  <div class="projects">
+
+    <fieldset class="group project">
+      <legend>Africa.com</legend>
+      <p>Headless WordPress and Next.js build for a pan-African media business, plus hosting. We also migrated eight of their sites from SiteGround onto our own servers.</p>
+      <p class="tags">Next.js · React · Headless WordPress · Hosting · DNS</p>
+      <a class="button link-button" href="https://www.africa.com/" target="_blank" rel="noopener">Visit</a>
+    </fieldset>
+
+    <fieldset class="group project">
+      <legend>Legal Resources Centre</legend>
+      <p>The WordPress website for one of South Africa's leading public-interest law organisations, which we developed and still maintain.</p>
+      <p class="tags">WordPress · Avada · SEO · Maintenance</p>
+      <a class="button link-button" href="https://lrc.org.za/" target="_blank" rel="noopener">Visit</a>
+    </fieldset>
+
+    <fieldset class="group project">
+      <legend>South African Disability Alliance</legend>
+      <p>A website redesign WebAcumen sponsored for SADA, which has paid off for them since launch.</p>
+      <p class="tags">Web design · WordPress · Non-profit</p>
+      <a class="button link-button" href="https://sada.org.za/" target="_blank" rel="noopener">Visit</a>
+    </fieldset>
+
+    <fieldset class="group project">
+      <legend>Extensionaire</legend>
+      <p>Took a local retailer online with an e-commerce store, which has done very well for them.</p>
+      <p class="tags">E-commerce · Web design</p>
+      <a class="button link-button" href="https://extensionaire.com/" target="_blank" rel="noopener">Visit</a>
+    </fieldset>
+
+    <fieldset class="group project">
+      <legend>Die Brandwag SMS web app</legend>
+      <p>Member management and bulk, regional and single SMS messaging through a SOAP API, with emergency SMS forwarding to regional heads, exports and encryption. Built in 2019.</p>
+      <p class="tags">PHP · MySQL · SOAP API</p>
+    </fieldset>
+
+    <fieldset class="group project">
+      <legend>IT workshop management system</legend>
+      <p>Started as an MS Access app on the Jet engine and grew into a full web app for an IT repair shop: job booking and tracking, quotes, technician assignment, call logging, fault reports and spares management. Client name withheld.</p>
+      <p class="tags">Web application · Database design</p>
+    </fieldset>
+
+    <fieldset class="group project">
+      <legend>Webdows 9.5</legend>
+      <p>This site. An old 386 booting WebDos and a Windows 95-inspired desktop, written in plain JavaScript with jQuery. A Vue version exists too.</p>
+      <p class="tags">JavaScript · jQuery · CSS</p>
+      <a class="button link-button" href="https://github.com/andre-vanrensburg/webdows-9.5-js" target="_blank" rel="noopener">GitHub</a>
+    </fieldset>
+
+  </div>
+</template>
+
+<template id="app-app" data-title="About Webdows">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="20%" height="auto" />
+  <p><strong>Webdows 9.5</strong> V.29.02</p>
+  <hr>
+  <p>JavaScript version (no frameworks). To view this app in framework versions (React, Vue, Angular and Svelte), simply click on Start, Shut down and select the preferred boot method. (Coming soon)</p>
+  <hr>
+  <p class="disclaimer">WebDos and Webdows are a tribute I made for fun, inspired by the MS-DOS and Windows machines I grew up on. They are not affiliated with, endorsed by or connected to Microsoft in any way. Microsoft, MS-DOS, Windows, QBasic, ENERGY STAR and all other product names, logos, sounds and brands belong to their respective owners. No licence, ownership or affiliation is claimed or implied, and they are used here for nostalgia and entertainment only.</p>
+</template>
+
+ <div class="taskbar">
+      <div class="start-button button" title="Start">
          Start
       </div>
-      <div class="task" id="task">Modal title</div>
+      <div class="tasks" id="tasks"></div>
       <div class="taskbar-time">
         <i class="devicon-react-original" title="View in React"></i>
         <i class="devicon-vuejs-plain" title="View in Vue"></i>
@@ -127,43 +397,43 @@
          <div class="start-menu-side-text text">
            <p class="ninefive">9.5</p>
            <p class="windows">Webdows</p>
-         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="100%" height="auto" />
+         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" width="100%" height="auto" />
          </div>
        </div>
 
        <div class="start-menu-items">
 
          <ul class="start-menu-items-list1">
-           <a class="start-menu-items-item-title" title="About me" data-title="About me" data-modal="#mainModal">
+           <a class="start-menu-items-item-title" title="About me" data-app="about">
             <li class="start-menu-items-item">
-            <div class="icon"/><img src="img/aboutme.png" width="100%" height="auto" /></div>
+            <div class="icon"><img src="img/aboutme.png" alt="" width="100%" height="auto" /></div>
              <p>About <span class="underline">M</span>e</p>
             </li>
             </a>
-           <a class="start-menu-items-item-title" data-title="My CV" title="My CV">
+           <a class="start-menu-items-item-title" title="My CV" data-app="cv">
             <li class="start-menu-items-item">
-            <div class="icon"/><img src="img/cv.png" width="100%" height="auto" /></div>
+            <div class="icon"><img src="img/cv.png" alt="" width="100%" height="auto" /></div>
              <p>My <span class="underline">C</span>V</p>
             </li>
             </a>
-            <a class="start-menu-items-item-title" data-title="My Portfolio" title="My Portfolio">
+            <a class="start-menu-items-item-title" title="My Portfolio" data-app="portfolio">
             <li class="start-menu-items-item">
-            <div class="icon"/><img src="img/portfolio.png" width="100%" height="auto" /></div>
+            <div class="icon"><img src="img/portfolio.png" alt="" width="100%" height="auto" /></div>
              <p>My <span class="underline">P</span>ortfolio</p>
             </li>
             </a>
          </ul>
 
          <ul class="start-menu-items-list2">
-           <a href="#" id="app" class="start-menu-items-item-title" title="App" data-title="App" data-modal="#mainModal">
+           <a href="#" id="app" class="start-menu-items-item-title" title="About Webdows" data-app="app">
             <li class="start-menu-items-item">
-            <div class="icon"/><img src="img/about.png" width="100%" height="auto" /></div>
+            <div class="icon"><img src="img/about.png" alt="" width="100%" height="auto" /></div>
              <p><span class="underline">A</span>bout...</p>
             </li>
             </a>
            <a href="#" class="start-menu-items-item-title shutdown" title="Shut down" id="shutdown">
             <li class="start-menu-items-item">
-            <div class="icon"/><img src="img/shutdown.png" width="100%" height="auto" /></div>
+            <div class="icon"><img src="img/shutdown.png" alt="" width="100%" height="auto" /></div>
              <p>Sh<span class="underline">u</span>t Down... </p>
             </li>
             </a>
@@ -172,7 +442,7 @@
        </div>
     </div>
 
-    <audio id="welcome">
+    <audio id="welcome" preload="auto">
       <source src="mp3/win95.mp3" type="audio/mpeg">
     </audio>
 
