@@ -272,7 +272,7 @@ $(function () {
   // ---- Framework editions (tray icons) --------------------------------------
   // Flip ready to true as each edition is deployed to /<edition>/
   var EDITIONS = {
-    react: { name: "React", ready: false },
+    react: { name: "React", ready: true },
     vue: { name: "Vue", ready: false },
     angular: { name: "Angular", ready: false },
     svelte: { name: "Svelte", ready: false }
@@ -297,7 +297,7 @@ $(function () {
     $("#reboot-text").text("Shutting down Webdows... Rebooting into the " + ed.name + " Edition.");
     $("#reboot").show();
     setTimeout(function () {
-      location.href = "/" + key + "/";
+      location.href = key + "/index.html";
     }, 1500);
   });
 

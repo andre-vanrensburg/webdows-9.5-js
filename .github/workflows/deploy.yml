@@ -29,4 +29,5 @@ jobs:
             **/.git*/**
             .github/**
             .vscode/**
+            editions/**
             README.md
