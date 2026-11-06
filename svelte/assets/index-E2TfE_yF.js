@@ -5,8 +5,6 @@
 
   <p>I have more than two decades of experience in IT, covering hardware repair, software development, end-user support, server administration, graphic design and management. I qualified as an IT Service Engineer through my PartServe apprenticeship in 2006, built my first website in 2009, and I've been building for the web ever since.</p>
 
-  <p>Today I'm the Managing Director and lead developer at <a class="link" href="https://webacumen.co.za/" target="_blank" rel="noopener">WebAcumen Software Development and Hosting</a>. We build bespoke web applications, websites and mobile apps and run managed hosting for clients in South Africa, the USA, the UK, Australia and New Zealand. I am also employed by the South African Government as an IT Engineer and Web Developer.</p>
-
   <p>In my free time I enjoy spending time with my family, playing guitar, watching professional skateboarding, or feeding my addiction to playing chess 😄</p>
 
   <fieldset class="group">
