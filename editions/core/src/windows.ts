@@ -1,5 +1,5 @@
 import { Store } from "./store";
-import { ABOUT_HTML, aboutWebdowsHtml, curiousHtml, Edition } from "./content";
+import { ABOUT_HTML, aboutWebdowsHtml, curiousHtml, type Edition } from "./content";
 
 export interface Win {
   id: string;

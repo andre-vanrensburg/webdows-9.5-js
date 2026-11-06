@@ -12,7 +12,7 @@ export const EDITIONS: Edition[] = [
   { key: "js", name: "JavaScript", icon: "devicon-javascript-plain", dir: "" },
   { key: "react", name: "React", icon: "devicon-react-original", dir: "react/" },
   { key: "vue", name: "Vue", icon: "devicon-vuejs-plain", dir: "vue/" },
-  { key: "angular", name: "Angular", icon: "devicon-angularjs-plain", dir: "angular/" },
+  { key: "angular", name: "Angular", icon: "devicon-angular-plain", dir: "angular/" },
   { key: "svelte", name: "Svelte", icon: "devicon-svelte-plain", dir: "svelte/" }
 ];
 
@@ -33,7 +33,8 @@ export function aboutWebdowsHtml(edition: Edition, logo: string): string {
     "Use the icons next to the clock to reboot into another edition.</p><hr>" +
     '<p class="disclaimer">WebDos and Webdows are a tribute I made for fun, inspired by the MS-DOS and Windows machines I grew up on. ' +
     "They are not affiliated with, endorsed by or connected to Microsoft in any way. Microsoft, MS-DOS, Windows, QBasic, ENERGY STAR and all other product names, logos, sounds and brands belong to their respective owners. " +
-    "No licence, ownership or affiliation is claimed or implied, and they are used here for nostalgia and entertainment only.</p>"
+    "No licence, ownership or affiliation is claimed or implied, and they are used here for nostalgia and entertainment only.</p>" +
+    '<p class="disclaimer">The JavaScript, React, Vue.js, Angular and Svelte names and logos belong to their respective owners. They appear here only to show which technology each edition of Webdows is built with; no affiliation, endorsement, licence or ownership is claimed or implied.</p>'
   );
 }
 

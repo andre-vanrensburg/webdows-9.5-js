@@ -9,6 +9,8 @@ export function loadSharedStyles(href = "../css/app.css"): Promise<void> {
     link.href = href;
     link.onload = () => resolve();
     link.onerror = () => resolve();
-    document.head.appendChild(link);
+    // Same order as the vanilla site: app.css before the icon fonts, so Font Awesome's weights win
+    const firstSheet = document.head.querySelector('link[rel="stylesheet"]');
+    document.head.insertBefore(link, firstSheet);
   });
 }

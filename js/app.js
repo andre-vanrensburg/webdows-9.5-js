@@ -273,9 +273,9 @@ $(function () {
   // Flip ready to true as each edition is deployed to /<edition>/
   var EDITIONS = {
     react: { name: "React", ready: true },
-    vue: { name: "Vue", ready: false },
-    angular: { name: "Angular", ready: false },
-    svelte: { name: "Svelte", ready: false }
+    vue: { name: "Vue", ready: true },
+    angular: { name: "Angular", ready: true },
+    svelte: { name: "Svelte", ready: true }
   };
 
   $(".tray-edition").on("click", function () {

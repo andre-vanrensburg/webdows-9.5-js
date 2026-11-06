@@ -77,5 +77,5 @@ export function Prompt({ boot }: { boot: BootSequence }) {
 }
 
 export function Loading() {
-  return <div id="loading" />;
+  return <div id="loading" style={{ backgroundImage: `url(${IMG}loading-react.jpg)` }} />;
 }
