@@ -53,8 +53,8 @@
           <p>System Configuration (c) 1998 - <span class="year">2026</span> WebDos (Web Disk Operating System [Version 19.87]), <br/>
      Andre van Rensburg. All rights reserved.</p>
           <br/>
-          <p>Intel 80386SX CPU at 40MHz<br/>
-          Memory Test : 42291000KB<br/>
+          <p>Intel 486DX2 CPU at 66MHz<br/>
+          Memory Test : 8192K OK<br/>
           Detecting IDE Primary Master : Local Storage<br/>
           Detecting IDE Primary Slave : None<br/>
           Detecting IDE Secondary Master : None<br/>
@@ -77,13 +77,13 @@
     <th colspan="2">System Configuration (c) 1998 - <span class="year">2026</span> WebDos (Web disk Operating System [Version 19.87]), Andre van Rensburg. All rights reserved.</th>
     </tr>
     <tr>
-    <td>Main Processor: 80386SX</td><td>Base Memory Size: 42291000KB</td>
+    <td>Main Processor: 80486DX2-66</td><td>Base Memory Size: 640KB</td>
     </tr>
     <tr>
-    <td>Numeric Processor: 80387SX</td><td>Extended Memory Size: 1408KB</td>
+    <td>Numeric Processor: Built-in</td><td>Extended Memory Size: 7552KB</td>
     </tr>
     <tr>
-    <td>Cache Size: 64KB</td><td>Hard Disk Type: Local Storage</td>
+    <td>Cache Size: 256KB</td><td>Hard Disk Type: Local Storage</td>
     </tr>
     <tr>
     <td>BIOS Date: 15/04/87</td><td>Display Type: VGA</td>
@@ -95,74 +95,84 @@
      </div>
   </div>
 
-  <!-- BIOS setup: only reachable by pressing Del during boot. Modelled on a 1990-era 386 setup utility. Nothing can be changed. -->
+  <!-- BIOS setup: only reachable by pressing Del during boot. Modelled on a 1994-era 486 CMOS setup utility. Nothing can be changed. -->
   <div id="bios" aria-hidden="true">
     <div class="bios-head">
-      <div>BIOS SETUP PROGRAM - <span id="bios-screen-name">WEBBIOS SETUP UTILITIES</span></div>
-      <div>(C) 1987 WebDos Systems, Andre van Rensburg. No Rights Worth Reserving</div>
+      <div>ROM ISA BIOS (WEBDOS94)</div>
+      <div id="bios-screen-name">CMOS SETUP UTILITY</div>
+      <div>WEBDOS SOFTWARE, INC.</div>
     </div>
 
-    <!-- 1. Warning screen -->
-    <div class="bios-screen" id="bios-warning">
-      <div class="bios-box">
-        <p class="bios-center">WARNING INFORMATION</p>
-        <p class="bios-center">Improper Use of Setup may Cause Problems!!</p>
-        <p>If System Hangs, Reboot System and Enter Setup by Pressing the &lt;DEL&gt; key</p>
-        <p>Do any of the following After Entering Setup:<br>
-           &nbsp;&nbsp;- Alter Options to make System Work<br>
-           &nbsp;&nbsp;- Load BIOS Setup Defaults<br>
-           &nbsp;&nbsp;- Load Power-On Defaults</p>
-        <p class="bios-center bios-hi">Hit &lt;ESC&gt; to Stop now, Any other key to Continue</p>
-      </div>
-    </div>
-
-    <!-- 2. Main menu -->
+    <!-- Main menu -->
     <div class="bios-screen" id="bios-main">
-      <ul class="bios-menu">
-        <li data-act="standard">STANDARD CMOS SETUP</li>
-        <li data-act="locked">ADVANCED CMOS SETUP</li>
-        <li data-act="locked">ADVANCED CHIPSET SETUP</li>
-        <li data-act="locked">AUTO CONFIGURATION WITH BIOS DEFAULTS</li>
-        <li data-act="locked">AUTO CONFIGURATION WITH POWER-ON DEFAULTS</li>
-        <li data-act="locked">CHANGE PASSWORD</li>
-        <li data-act="locked">HARD DISK UTILITY</li>
-        <li data-act="locked">WRITE TO CMOS AND EXIT</li>
-        <li data-act="exit">DO NOT WRITE TO CMOS AND EXIT</li>
-      </ul>
-      <div class="bios-hint" id="bios-hint">Standard CMOS setup for changing time, date, hard disk type, etc.</div>
+      <div class="bios-menu">
+        <ul>
+          <li data-act="standard" data-hint="Time, Date, Hard Disk Type...">STANDARD CMOS SETUP</li>
+          <li data-act="locked" data-hint="Boot sequence, typematic rate, shadow RAM...">BIOS FEATURES SETUP</li>
+          <li data-act="locked" data-hint="Wait states, cache and DRAM timing...">CHIPSET FEATURES SETUP</li>
+          <li data-act="locked" data-hint="Doze, standby and suspend timers. An Energy Star Ally.">POWER MANAGEMENT SETUP</li>
+          <li data-act="locked" data-hint="Load BIOS defaults (locked)">LOAD BIOS DEFAULTS</li>
+          <li data-act="locked" data-hint="Load setup defaults (locked)">LOAD SETUP DEFAULTS</li>
+        </ul>
+        <ul>
+          <li data-act="locked" data-hint="Change, set or disable password. There isn't one.">SUPERVISOR PASSWORD</li>
+          <li data-act="locked" data-hint="Change, set or disable password. Still isn't one.">USER PASSWORD</li>
+          <li data-act="locked" data-hint="Detect hard disk type automatically">IDE HDD AUTO DETECTION</li>
+          <li data-act="locked" data-hint="Low level format the hard disk. Absolutely not.">HDD LOW LEVEL FORMAT</li>
+          <li data-act="locked" data-hint="Save data to CMOS and exit setup">SAVE &amp; EXIT SETUP</li>
+          <li data-act="exit" data-hint="Abandon all data and continue booting">EXIT WITHOUT SAVING</li>
+        </ul>
+      </div>
+      <div class="bios-keys">Esc : Quit &nbsp;&nbsp;&nbsp; &uarr;&darr;&rarr;&larr; : Select Item<br>F10 : Save &amp; Exit Setup &nbsp;&nbsp;&nbsp; (Shift)F2 : Change Color</div>
+      <div class="bios-hint" id="bios-hint">Time, Date, Hard Disk Type...</div>
     </div>
 
-    <!-- 3. Standard CMOS setup (read-only) -->
+    <!-- Standard CMOS setup (read-only) -->
     <div class="bios-screen" id="bios-standard">
-      <table class="bios-table">
-        <tr><td>Date (mn/date/year)</td><td>: <span id="bios-date">Mon, Jan 01 1987</span></td></tr>
-        <tr><td>Time (hour/min/sec)</td><td>: <span id="bios-time">00 : 00 : 00</span></td></tr>
-        <tr><td>Hard disk C: type</td><td>: 47 &nbsp;Local Storage</td></tr>
-        <tr><td>Hard disk D: type</td><td>: Not Installed</td></tr>
-        <tr><td>Floppy drive A:</td><td>: 1.2 MB, 5&frac14;"</td></tr>
-        <tr><td>Floppy drive B:</td><td>: 1.44 MB, 3&frac12;"</td></tr>
-        <tr><td>Primary display</td><td>: VGA/PGA/EGA</td></tr>
-        <tr><td>Keyboard</td><td>: Installed</td></tr>
-        <tr><td>Main processor</td><td>: 80386SX, 40 MHz</td></tr>
-        <tr><td>Numeric processor</td><td>: 80387SX</td></tr>
-        <tr><td>Base memory</td><td>: 640 KB</td></tr>
-        <tr><td>Ext. memory</td><td>: 1408 KB</td></tr>
-        <tr><td>Curiosity</td><td>: <span class="bios-hi">Enabled</span></td></tr>
-      </table>
-      <div class="bios-hint">ESC : Exit &nbsp; &uarr;&darr; : Select Item &nbsp; PgUp/PgDn : Modify</div>
+      <div class="bios-std">
+        <div class="bios-std-top">
+          <div>Date (mm:dd:yy) : <span class="bios-val" id="bios-date">Mon, Jan 1 1994</span></div>
+          <div>Time (hh:mm:ss) : <span class="bios-val" id="bios-time">00 : 00 : 00</span></div>
+        </div>
+        <table class="bios-table">
+          <tr class="bios-th"><td>HARD DISKS</td><td>TYPE</td><td>SIZE</td><td>CYLS</td><td>HEAD</td><td>PRECOMP</td><td>LANDZ</td><td>SECTOR</td><td>MODE</td></tr>
+          <tr><td>Primary Master</td><td class="bios-val">Auto</td><td>540</td><td>1048</td><td>16</td><td>65535</td><td>1047</td><td>63</td><td>LBA</td></tr>
+          <tr><td>Primary Slave</td><td class="bios-val">None</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>----</td></tr>
+          <tr><td>Secondary Master</td><td class="bios-val">None</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>----</td></tr>
+          <tr><td>Secondary Slave</td><td class="bios-val">None</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>----</td></tr>
+        </table>
+        <div class="bios-std-bottom">
+          <div>
+            <div>Drive A : <span class="bios-val">1.44M, 3.5 in.</span></div>
+            <div>Drive B : <span class="bios-val">None</span></div>
+            <br>
+            <div>Video &nbsp;&nbsp;: <span class="bios-val">EGA/VGA</span></div>
+            <div>Halt On : <span class="bios-val">All Errors</span></div>
+            <div>Curiosity : <span class="bios-val bios-on">Enabled</span></div>
+          </div>
+          <div class="bios-membox">
+            <div>Base Memory: &nbsp;&nbsp;&nbsp;640K</div>
+            <div>Extended Memory: 7552K</div>
+            <div>Other Memory: &nbsp;&nbsp;384K</div>
+            <div class="bios-rule"></div>
+            <div>Total Memory: &nbsp;8192K</div>
+          </div>
+        </div>
+      </div>
+      <div class="bios-keys">ESC : Quit &nbsp;&nbsp; &uarr;&darr;&rarr;&larr; : Select Item &nbsp;&nbsp; PU/PD/+/- : Modify<br>F1 : Help &nbsp;&nbsp; (Shift)F2 : Change Color</div>
     </div>
 
     <div class="bios-dialog" id="bios-dialog">
-      <p class="bios-hi">*** ACCESS DENIED ***</p>
+      <p class="bios-dialog-title">ACCESS DENIED</p>
       <p>You curious mind, you.</p>
       <p>I knew someone would press Del. Nothing in here can be changed, but Curiosity was already enabled, so you're all set.</p>
-      <p class="bios-hi">Hit &lt;ESC&gt; to continue booting</p>
+      <p class="bios-dialog-ok">Press Esc to continue booting</p>
     </div>
-
-    <div class="bios-foot">ESC : Exit &nbsp;&nbsp; &uarr;&darr; : Sel &nbsp;&nbsp; Enter : Select &nbsp;&nbsp; F10 : Save &amp; Exit</div>
   </div>
 
   <div id="loading"></div>
+
+  <div id="reboot"><p id="reboot-text"></p></div>
 
 <div class="icon-content about" title="About me" data-app="about" tabindex="0">
 <img src="img/aboutme.png" width="50" height="50" alt="">
@@ -225,10 +235,10 @@
       </div>
       <div class="tasks" id="tasks"></div>
       <div class="taskbar-time">
-        <i class="devicon-react-original" title="View in React"></i>
-        <i class="devicon-vuejs-plain" title="View in Vue"></i>
-        <i class="devicon-angularjs-plain" title="View in Angular"></i>
-        <i class="devicon-svelte-plain" title="View in Svelte"></i>
+        <i class="devicon-react-original tray-edition" data-edition="react" title="Reboot in React"></i>
+        <i class="devicon-vuejs-plain tray-edition" data-edition="vue" title="Reboot in Vue"></i>
+        <i class="devicon-angularjs-plain tray-edition" data-edition="angular" title="Reboot in Angular"></i>
+        <i class="devicon-svelte-plain tray-edition" data-edition="svelte" title="Reboot in Svelte"></i>
         <p class="taskbar-time-text" id="timetip">
         </p>
       </div>

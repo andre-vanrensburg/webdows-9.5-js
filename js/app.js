@@ -43,20 +43,9 @@ $(function () {
 
   // ---- BIOS setup (Del during boot) ----------------------------------------
   var inBios = false;
-  var biosScreen = "warning";
+  var biosScreen = "main";
   var biosSel = 0;
   var biosClock;
-  var hints = [
-    "Standard CMOS setup for changing time, date, hard disk type, etc.",
-    "Advanced CMOS setup for typematic rate, boot sequence, shadow RAM, etc.",
-    "Advanced chipset setup for wait states, cache and memory timing.",
-    "Load BIOS defaults. (Locked)",
-    "Load power-on defaults. (Locked)",
-    "Change the setup password. (There isn't one. There never was.)",
-    "Format, verify and set interleave on hard disks. (Absolutely not.)",
-    "Save settings to CMOS and reboot.",
-    "Leave setup without saving and continue booting."
-  ];
   var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
@@ -65,17 +54,14 @@ $(function () {
     $(".bios-screen").removeClass("on");
     $("#bios-" + name).addClass("on");
     $("#bios-dialog").hide();
-    $("#bios-screen-name").text(
-      name === "standard" ? "STANDARD CMOS SETUP" :
-      name === "warning" ? "WARNING INFORMATION" : "WEBBIOS SETUP UTILITIES"
-    );
+    $("#bios-screen-name").text(name === "standard" ? "STANDARD CMOS SETUP" : "CMOS SETUP UTILITY");
   }
 
   function selectBiosItem(n) {
     var $items = $(".bios-menu li");
     biosSel = (n + $items.length) % $items.length;
     $items.removeClass("sel").eq(biosSel).addClass("sel");
-    $("#bios-hint").text(hints[biosSel]);
+    $("#bios-hint").text($items.eq(biosSel).data("hint"));
   }
 
   function curious() {
@@ -87,12 +73,12 @@ $(function () {
     timers.forEach(clearTimeout);
     timers = [];
     $("#bios").css("display", "flex");
-    showBiosScreen("warning");
+    showBiosScreen("main");
     selectBiosItem(0);
     var tick = function () {
       var d = new Date();
       $("#bios-time").text([d.getHours(), d.getMinutes(), d.getSeconds()].map(checkTime).join(" : "));
-      $("#bios-date").text(days[d.getDay()] + ", " + months[d.getMonth()] + " " + checkTime(d.getDate()) + " " + d.getFullYear());
+      $("#bios-date").text(days[d.getDay()] + ", " + months[d.getMonth()] + " " + d.getDate() + " " + d.getFullYear());
     };
     tick();
     biosClock = setInterval(tick, 1000);
@@ -111,33 +97,6 @@ $(function () {
     timers.push(setTimeout(finishBoot, 6000));
   }
 
-  $(document).on("keydown", function (e) {
-    if (!inBios) return;
-    e.preventDefault();
-    e.stopImmediatePropagation();
-    var k = e.key;
-
-    // Once the joke has landed, Esc carries on booting
-    if ($("#bios-dialog").is(":visible")) {
-      if (k === "Escape") exitBios();
-      return;
-    }
-
-    if (biosScreen === "warning") {
-      if (k === "Escape") exitBios();
-      else showBiosScreen("main");
-    } else if (biosScreen === "main") {
-      if (k === "ArrowDown") selectBiosItem(biosSel + 1);
-      else if (k === "ArrowUp") selectBiosItem(biosSel - 1);
-      else if (k === "Escape") exitBios();
-      else if (k === "F10") curious();
-      else if (k === "Enter") runBiosItem();
-    } else if (biosScreen === "standard") {
-      if (k === "Escape") showBiosScreen("main");
-      else if (["PageUp", "PageDown", "+", "-", "Enter"].indexOf(k) > -1) curious();
-    }
-  });
-
   function runBiosItem() {
     var act = $(".bios-menu li").eq(biosSel).data("act");
     if (act === "standard") showBiosScreen("standard");
@@ -145,15 +104,40 @@ $(function () {
     else curious();
   }
 
+  $(document).on("keydown", function (e) {
+    if (!inBios) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var k = e.key;
+    var perCol = 6;
+
+    // Once the joke has landed, Esc carries on booting
+    if ($("#bios-dialog").is(":visible")) {
+      if (k === "Escape") exitBios();
+      return;
+    }
+
+    if (biosScreen === "main") {
+      if (k === "ArrowDown") selectBiosItem(biosSel + 1);
+      else if (k === "ArrowUp") selectBiosItem(biosSel - 1);
+      else if (k === "ArrowRight" || k === "ArrowLeft") selectBiosItem((biosSel + perCol) % (perCol * 2));
+      else if (k === "Escape") exitBios();
+      else if (k === "Enter") runBiosItem();
+      else if (k === "F10" || k === "F2") curious();
+    } else if (biosScreen === "standard") {
+      if (k === "Escape") showBiosScreen("main");
+      else if (["PageUp", "PageDown", "+", "-", "Enter"].indexOf(k) > -1) curious();
+    }
+  });
+
   // Mouse and touch support for visitors without a keyboard
   $(document).on("click", ".bios-menu li", function (e) {
     e.stopPropagation();
-    selectBiosItem($(this).index());
+    selectBiosItem($(".bios-menu li").index(this));
     runBiosItem();
   });
   $("#bios").on("click", function () {
-    if (biosScreen === "warning") showBiosScreen("main");
-    else if ($("#bios-dialog").is(":visible")) exitBios();
+    if ($("#bios-dialog").is(":visible")) exitBios();
     else curious();
   });
 
@@ -263,6 +247,38 @@ $(function () {
     });
   }
 
+  // ---- Framework editions (tray icons) --------------------------------------
+  // Flip ready to true as each edition is deployed to /<edition>/
+  var EDITIONS = {
+    react: { name: "React", ready: false },
+    vue: { name: "Vue", ready: false },
+    angular: { name: "Angular", ready: false },
+    svelte: { name: "Svelte", ready: false }
+  };
+
+  $(".tray-edition").on("click", function () {
+    var key = $(this).data("edition");
+    var ed = EDITIONS[key];
+    if (!ed) return;
+    if (!ed.ready) {
+      openApp("soon", {
+        title: "Webdows " + ed.name + " Edition",
+        html:
+          '<p><strong>Webdows 9.5 ' + ed.name + ' Edition</strong></p><hr>' +
+          '<p>This machine will soon reboot into a version of Webdows rebuilt in ' + ed.name +
+          '. Same PC, same BIOS, different engine under the hood. Check back soon.</p>'
+      });
+      return;
+    }
+    $(".window").remove();
+    $("#tasks").empty();
+    $("#reboot-text").text("Shutting down Webdows... Rebooting into the " + ed.name + " Edition.");
+    $("#reboot").show();
+    setTimeout(function () {
+      location.href = "/" + key + "/";
+    }, 1500);
+  });
+
   // ---- Windows -------------------------------------------------------------
   var zTop = 100;
   var cascade = 0;
@@ -270,26 +286,27 @@ $(function () {
     return window.innerWidth < 700;
   };
 
-  function openApp(app) {
+  function openApp(app, custom) {
     var $existing = $('.window[data-app="' + app + '"]');
     if ($existing.length) {
+      if (custom) $existing.find(".title").text(custom.title).end().find(".content").html(custom.html);
       $existing.css("display", "flex");
       focusWindow($existing);
       return;
     }
 
     var $tpl = $("#app-" + app);
-    if (!$tpl.length) return;
-    var title = $tpl.data("title");
+    if (!$tpl.length && !custom) return;
+    var title = custom ? custom.title : $tpl.data("title");
 
     var $win = $($("#tpl-window").html());
     $win.attr("data-app", app).attr("aria-label", title);
     $win.find(".title").text(title);
-    $win.find(".content").html($tpl.html());
+    $win.find(".content").html(custom ? custom.html : $tpl.html());
 
     var offset = (cascade++ % 5) * 28;
     $win.css({ top: 20 + offset + "px", left: 40 + offset + "px" });
-    if (app === "app") $win.addClass("small");
+    if (app === "app" || app === "soon") $win.addClass("small");
     if (isSmall()) $win.addClass("maximize");
 
     $(".taskbar").before($win);
