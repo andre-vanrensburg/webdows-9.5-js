@@ -60,6 +60,8 @@
   overflow: hidden;
   background: url("../img/loading.png") no-repeat center center fixed; 
   background-size: cover;
+  /* opaque while the image loads, so the desktop never shows through */
+  background-color: #000;
   display: grid;
   height: 100vh;
   justify-content: center;

@@ -15,6 +15,16 @@ export function revealWhenBooted(): void {
   check();
 }
 
+/** Starts downloading images now (e.g. the logo screen during POST) so they're ready when shown */
+const preloaded: HTMLImageElement[] = [];
+export function preloadImages(...srcs: string[]): void {
+  for (const src of srcs) {
+    const img = new Image();
+    img.src = src;
+    preloaded.push(img);
+  }
+}
+
 export function loadSharedStyles(href = "../css/app.css"): Promise<void> {
   return new Promise((resolve) => {
     const link = document.createElement("link");
