@@ -91,13 +91,13 @@ var WebdowsShutdown = (() => {
     </div>`);
     document.body.append(shutting);
     setTimeout(() => {
-      if (choice === "restart") {
-        location.reload();
-        return;
-      }
       const black = el(`<div class="sd-screen sd-black"></div>`);
       document.body.append(black);
       shutting.remove();
+      if (choice === "restart") {
+        setTimeout(() => location.reload(), 800);
+        return;
+      }
       if (choice === "shutdown") {
         black.classList.add("sd-safe");
         black.innerHTML = "<p>It's now safe to turn off<br>your computer.</p><small>Click anywhere to switch it back on.</small>";

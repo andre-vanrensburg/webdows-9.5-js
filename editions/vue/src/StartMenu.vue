@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { START_MENU, type MenuItem, type WindowManager } from "../../core/src";
-import { LOGO } from "./assets";
+import { START_MENU, showShutdown, type MenuItem, type WindowManager } from "../../core/src";
+import { EDITION, LOGO, SCREEN } from "./assets";
 import MenuRow from "./MenuRow.vue";
 
 const props = defineProps<{ wm: WindowManager }>();
@@ -14,8 +14,8 @@ function choose(item: MenuItem) {
     sub.value = sub.value === item.label ? null : item.label;
     return;
   }
-  if (item.shutdown) return location.reload();
   emit("close");
+  if (item.shutdown) return showShutdown({ from: EDITION, screen: SCREEN, preselect: "shutdown" });
   if (item.app) props.wm.open(item.app);
   else if (item.curious) props.wm.curious(item.label);
 }

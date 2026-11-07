@@ -224,11 +224,11 @@ $(function () {
       $li.toggleClass("sub-open");
       return;
     }
+    closeStartMenu();
     if ($li.is("#shutdown")) {
-      location.reload();
+      WebdowsShutdown.showShutdown({ from: { key: "js", name: "JavaScript" }, screen: "img/loading.png", preselect: "shutdown" });
       return;
     }
-    closeStartMenu();
     if ($li.data("app")) openApp($li.data("app"));
     else if ($li.data("curious")) curiousWindow($li.find("p").first().text().trim());
   });

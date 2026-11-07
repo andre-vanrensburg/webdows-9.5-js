@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { START_MENU, type MenuItem, type WindowManager } from "../../core/src";
-  import { LOGO } from "./assets";
+  import { START_MENU, showShutdown, type MenuItem, type WindowManager } from "../../core/src";
+  import { EDITION, LOGO, SCREEN } from "./assets";
   import MenuRow from "./MenuRow.svelte";
   let { wm, onclose }: { wm: WindowManager; onclose: () => void } = $props();
   let sub = $state<string | null>(null);
@@ -11,8 +11,8 @@
       sub = sub === item.label ? null : item.label;
       return;
     }
-    if (item.shutdown) return location.reload();
     onclose();
+    if (item.shutdown) return showShutdown({ from: EDITION, screen: SCREEN, preselect: "shutdown" });
     if (item.app) wm.open(item.app);
     else if (item.curious) wm.curious(item.label);
   }

@@ -2,6 +2,19 @@
  * Loads the site's shared stylesheet (../css/app.css) at runtime, so every edition uses the
  * very same file as the vanilla site, and images like the loading screen aren't duplicated per build.
  */
+/**
+ * Each edition's index.html starts with a black #precover so the visitor never sees a blank
+ * page or the desktop colour before the POST screen. Remove it once the boot screen is drawn.
+ */
+export function revealWhenBooted(): void {
+  const check = () => {
+    if (document.querySelector("#boot, #prompt, #loading, #bios")) {
+      requestAnimationFrame(() => document.getElementById("precover")?.remove());
+    } else requestAnimationFrame(check);
+  };
+  check();
+}
+
 export function loadSharedStyles(href = "../css/app.css"): Promise<void> {
   return new Promise((resolve) => {
     const link = document.createElement("link");

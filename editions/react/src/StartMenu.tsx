@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { START_MENU, splitLabel, type MenuItem, type WindowManager } from "../../core/src";
-import { IMG, LOGO } from "./assets";
+import { START_MENU, splitLabel, showShutdown, type MenuItem, type WindowManager } from "../../core/src";
+import { EDITION, IMG, LOGO, SCREEN } from "./assets";
 
 function Label({ item }: { item: MenuItem }) {
   const [a, k, b] = splitLabel(item);
@@ -24,8 +24,8 @@ export function StartMenu({ wm, onClose }: { wm: WindowManager; onClose: () => v
       setSub(sub === item.label ? null : item.label);
       return;
     }
-    if (item.shutdown) return location.reload();
     onClose();
+    if (item.shutdown) return showShutdown({ from: EDITION, screen: SCREEN, preselect: "shutdown" });
     if (item.app) wm.open(item.app);
     else if (item.curious) wm.curious(item.label);
   };

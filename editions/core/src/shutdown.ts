@@ -93,13 +93,15 @@ function run(choice: "shutdown" | "restart" | "mode", o: ShutdownOptions): void 
   document.body.append(shutting);
 
   setTimeout(() => {
-    if (choice === "restart") {
-      location.reload();
-      return;
-    }
     const black = el(`<div class="sd-screen sd-black"></div>`);
     document.body.append(black);
     shutting.remove();
+
+    // Restart: a moment of black screen, then the machine POSTs again
+    if (choice === "restart") {
+      setTimeout(() => location.reload(), 800);
+      return;
+    }
 
     if (choice === "shutdown") {
       black.classList.add("sd-safe");

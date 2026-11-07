@@ -7,6 +7,7 @@ export const SOUND = "../mp3/win95.mp3";
 export const EDITION = EDITIONS.find((e) => e.key === "angular")!;
 export const LOGO = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg";
 export const YEAR = new Date().getFullYear();
+export const SCREEN = IMG + "loading-angular.jpg";
 
 /** Mirrors a shared core store into an Angular signal for the lifetime of the injecting component */
 export function fromStore<T>(store: Store<T>): Signal<T> {

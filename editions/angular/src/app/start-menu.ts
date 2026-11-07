@@ -1,6 +1,6 @@
 import { Component, input, output, signal } from "@angular/core";
-import { START_MENU, splitLabel, type MenuItem, type WindowManager } from "../../../core/src";
-import { IMG, LOGO } from "./shared";
+import { START_MENU, splitLabel, showShutdown, type MenuItem, type WindowManager } from "../../../core/src";
+import { EDITION, IMG, LOGO, SCREEN } from "./shared";
 
 /** One Start menu row. The host element is the <li> itself, so the Win95 menu CSS applies unchanged. */
 @Component({
@@ -74,8 +74,8 @@ export class StartMenu {
       this.sub.set(this.sub() === item.label ? null : item.label);
       return;
     }
-    if (item.shutdown) return location.reload();
     this.close.emit();
+    if (item.shutdown) return showShutdown({ from: EDITION, screen: SCREEN, preselect: "shutdown" });
     if (item.app) this.wm().open(item.app);
     else if (item.curious) this.wm().curious(item.label);
   }
