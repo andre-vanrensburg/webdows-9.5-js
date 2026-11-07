@@ -373,7 +373,8 @@ $(function () {
     $win.remove();
   }
 
-  $(document).on("mousedown touchstart", ".window", function () {
+  // The shared Shut Down dialog borrows the window look but is not one of our windows
+  $(document).on("mousedown touchstart", ".window:not(.sd-dialog)", function () {
     focusWindow($(this));
   });
 

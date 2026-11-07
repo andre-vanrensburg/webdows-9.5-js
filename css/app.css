@@ -989,6 +989,7 @@ table.bios-table > tbody > tr > td.bios-val {
 }
 .sd-buttons {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   gap: 8px;
 }
