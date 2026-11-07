@@ -1,0 +1,3 @@
+node_modules/
+editions/*/node_modules/
+editions/*/.angular/

@@ -30,7 +30,7 @@
   grid-template-columns: 70% 30%;
   grid-template-rows: 90% 10%;
   color:#fff;
-  z-index: 40;
+  z-index: 9600;
 }
 
 #boot img {
@@ -50,14 +50,18 @@
   padding: 10px 0px 0px 10px;
   color:#fff;
   background-color:#000;
-  z-index: 30;
+  z-index: 9500;
 }
 
 #loading {
-  z-index: 20;
+  position: fixed;
+  inset: 0;
+  z-index: 9400;
   overflow: hidden;
   background: url("../img/loading.png") no-repeat center center fixed; 
   background-size: cover;
+  /* opaque while the image loads, so the desktop never shows through */
+  background-color: #000;
   display: grid;
   height: 100vh;
   justify-content: center;
@@ -163,6 +167,9 @@ text-decoration: none !important;
 .portfolio {
         top: 210px;
 }
+.mines {
+        top: 110px;
+}
 
   .taskbar {
       position: fixed;
@@ -172,6 +179,7 @@ text-decoration: none !important;
       background: #c3c6cd;
       border-top: 3px solid #deebf3;
       display: flex;
+      z-index: 9000;
       justify-content: space-between;
 }
   .taskbar-time {
@@ -210,6 +218,7 @@ text-decoration: none !important;
       display: none; 
       position: fixed;
       bottom: 35px;
+      z-index: 9001;
   grid-template-areas:
     'menuside menuitems';
   grid-template-columns: 15% 85%;
@@ -340,7 +349,8 @@ text-decoration: none !important;
 
 .banner {
   background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url("../img/qbasic.png");
-  height: 50%;
+  height: 40vh;
+  min-height: 160px;
   width: 100%;
   background-position: top;
   background-repeat: no-repeat;
@@ -353,7 +363,287 @@ text-decoration: none !important;
   top: 0px !important;
   left: -1px !important;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 38px);
+}
+
+/* ---- BIOS setup (1994-era 486 blue CMOS setup) ------------------------ */
+#bios {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 9700;
+  background: #0000aa;
+  color: #fff;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 15px;
+  flex-direction: column;
+  padding: 12px 16px;
+}
+.bios-head {
+  text-align: center;
+  color: #fff;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.bios-screen {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  border: 2px solid #fff;
+  outline: 2px solid #0000aa;
+  box-shadow: 0 0 0 4px #fff;
+  margin: 4px;
+}
+.bios-screen.on {
+  display: flex;
+}
+.bios-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex: 1;
+}
+.bios-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 16px 0;
+}
+.bios-menu ul + ul {
+  border-left: 2px solid #fff;
+}
+.bios-menu li {
+  color: #ffff55;
+  padding: 4px 28px;
+  cursor: default;
+}
+.bios-menu li.sel {
+  background: #aa0000;
+  color: #fff;
+}
+.bios-keys {
+  border-top: 2px solid #fff;
+  padding: 6px 16px;
+  color: #fff;
+}
+.bios-hint {
+  border-top: 2px solid #fff;
+  padding: 6px 16px;
+  text-align: center;
+  color: #fff;
+}
+.bios-std {
+  flex: 1;
+  padding: 10px 18px;
+  overflow: auto;
+}
+.bios-std-top {
+  margin-bottom: 12px;
+}
+.bios-val {
+  color: #ffff55;
+}
+.bios-on {
+  color: #55ff55;
+  font-weight: bold;
+}
+table.bios-table {
+  border: none;
+  width: auto;
+  color: #fff;
+  margin-bottom: 14px;
+}
+table.bios-table > tbody > tr > td {
+  border: none;
+  width: auto;
+  color: #fff;
+  padding: 2px 14px 2px 0;
+  height: auto;
+}
+table.bios-table > tbody > tr > td.bios-val {
+  color: #ffff55;
+}
+.bios-th td {
+  color: #55ffff !important;
+}
+.bios-std-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.bios-membox {
+  border: 2px solid #fff;
+  padding: 8px 14px;
+  align-self: flex-start;
+}
+.bios-rule {
+  border-top: 1px solid #fff;
+  margin: 4px 0;
+}
+.bios-dialog {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(480px, 90%);
+  background: #aa0000;
+  color: #fff;
+  border: 4px double #fff;
+  box-shadow: 8px 8px 0 #000;
+  padding: 10px 20px;
+  text-align: center;
+}
+.bios-dialog-title,
+.bios-dialog-ok {
+  color: #ffff55;
+  font-weight: bold;
+}
+@media only screen and (max-width: 699px) {
+  #bios {
+    font-size: 12px;
+    padding: 6px;
+  }
+  .bios-menu {
+    grid-template-columns: 1fr;
+  }
+  .bios-menu ul + ul {
+    border-left: none;
+    border-top: 2px solid #fff;
+  }
+  .bios-menu li {
+    padding: 3px 12px;
+  }
+}
+
+/* ---- Framework editions (tray) ------------------------------------- */
+.tray-edition {
+  cursor: pointer;
+}
+
+/* ---- Multi-window ------------------------------------------------------ */
+.window .titlebar {
+  background: #808080;
+  align-items: center;
+}
+.window.active .titlebar {
+  background: #000080;
+}
+.window .title {
+  font-weight: bold;
+}
+.window.small {
+  width: 420px;
+  height: auto;
+  max-width: 95%;
+  min-height: 0;
+}
+.window.small .content-body,
+.window.small .content {
+  min-height: 0;
+  height: auto;
+}
+.content-body {
+  overflow-y: auto;
+  background: #c0c0c0;
+}
+.content {
+  height: auto;
+  line-height: 1.45;
+  font-size: 14px;
+}
+
+.tasks {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  margin-left: 4px;
+}
+.tasks .task {
+  display: block;
+  position: static;
+  min-width: 120px;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  cursor: default;
+}
+.tasks .task.pressed {
+  border: inset 2px;
+  background: #d4d6db;
+}
+
+.icon-content {
+  cursor: default;
+}
+.icon-content:focus {
+  outline: none;
+}
+.icon-content:focus a {
+  background: #000080;
+  outline: 1px dotted #fff;
+}
+
+/* ---- Window content ---------------------------------------------------- */
+.content h2 {
+  margin: 0 0 2px;
+  font-size: 20px;
+}
+.content hr {
+  border: none;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #fff;
+}
+.link {
+  color: #000080;
+  text-decoration: underline !important;
+}
+.group {
+  border: 2px groove #fff;
+  margin: 12px 0;
+  padding: 6px 12px 10px;
+}
+.group legend {
+  padding: 0 4px;
+  font-weight: bold;
+}
+.disclaimer {
+  font-size: 12px;
+}
+.noscript {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: #000;
+  color: #fff;
+  padding: 20px;
+  font-family: Consolas, monospace;
+}
+.noscript a {
+  color: #fff;
+  text-decoration: underline !important;
+}
+
+@media only screen and (max-width: 699px) {
+  .window.maximize {
+    width: 100%;
+  }
+  .window.small.maximize {
+    height: calc(100% - 38px);
+  }
+  input, input:focus {
+    font-size: 16px;
+  }
+  .tasks .task {
+    min-width: 70px;
+  }
+  .taskbar-time i {
+    display: none;
+  }
+  .start-menu {
+    width: 70%;
+  }
 }
 
 @media only screen and (min-width: 600px) {
@@ -364,4 +654,397 @@ text-decoration: none !important;
   /* .window {
    width: 50%;
   } */
+}
+/* ---- Start menu: Win95-style flyouts ----------------------------------- */
+.start-menu {
+  min-width: 230px;
+  overflow: visible;
+}
+.start-menu-items ul {
+  list-style: none;
+}
+.start-menu-items-item {
+  position: relative;
+  cursor: default;
+}
+.start-menu-items-item p {
+  margin: 6px 0;
+  flex: 1;
+}
+.start-menu-items .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.start-menu-items .icon i {
+  font-size: 18px;
+  color: #000080;
+}
+.start-menu-items-item:hover .icon i {
+  color: #fff;
+}
+.start-menu-items-item .arrow {
+  font-size: 9px;
+  padding: 0 8px;
+}
+.submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -3px;
+  min-width: 190px;
+  margin: 0;
+  padding: 0;
+  background: #c3c6cd;
+  border-top: 2px solid #deebf3;
+  border-left: 2px solid #deebf3;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  color: #000;
+  z-index: 2;
+}
+.has-sub:hover > .submenu,
+.has-sub.sub-open > .submenu {
+  display: block;
+}
+.has-sub:hover,
+.has-sub.sub-open {
+  background: #00207d;
+  color: #fff;
+}
+.submenu .start-menu-items-item {
+  color: #000;
+  background: #c3c6cd;
+}
+.submenu .start-menu-items-item:hover {
+  background: #00207d;
+  color: #fff;
+}
+.submenu .start-menu-items-item .icon i {
+  color: #000080;
+}
+.submenu .start-menu-items-item:hover .icon i {
+  color: #fff;
+}
+.start-menu-items-list1 + .start-menu-items-list1 {
+  border-top: 1px solid #deebf3;
+}
+
+/* ---- Curious window ---------------------------------------------------- */
+.curious {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.curious > i {
+  font-size: 34px;
+  color: #000080;
+  margin-top: 12px;
+}
+
+/* ---- Minesweeper ------------------------------------------------------- */
+.window.fit {
+  width: auto;
+  height: auto;
+  min-height: 0;
+  resize: none;
+}
+.window.fit .content-body {
+  overflow: visible;
+  min-height: 0;
+  height: auto;
+}
+.window.fit .content {
+  min-height: 0;
+  height: auto;
+  padding: 0 4px 4px;
+}
+.ms {
+  position: relative;
+  background: #c0c0c0;
+  user-select: none;
+  -webkit-user-select: none;
+  font-family: tahoma, sans-serif;
+  -webkit-touch-callout: none;
+}
+.ms-menubar {
+  display: flex;
+  font-size: 13px;
+  padding: 2px 0;
+}
+.ms-menu {
+  position: relative;
+}
+.ms-menu-title {
+  display: block;
+  padding: 2px 8px;
+  cursor: default;
+}
+.ms-menu.open .ms-menu-title {
+  background: #000080;
+  color: #fff;
+}
+.ms-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 170px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  padding: 2px;
+  z-index: 5;
+}
+.ms-menu.open .ms-dropdown {
+  display: block;
+}
+.ms-dropdown div {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 3px 18px 3px 22px;
+  white-space: nowrap;
+  cursor: default;
+}
+.ms-dropdown div:hover {
+  background: #000080;
+  color: #fff;
+}
+.ms-dropdown b {
+  position: absolute;
+  left: 6px;
+  visibility: hidden;
+}
+.ms-dropdown .ms-level.on b {
+  visibility: visible;
+}
+.ms-dropdown hr {
+  margin: 3px 1px;
+  border: none;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #fff;
+}
+.ms-body {
+  border: 3px solid;
+  border-color: #fff #808080 #808080 #fff;
+  padding: 6px;
+}
+.ms-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  padding: 4px 6px;
+  margin-bottom: 6px;
+}
+.ms-led {
+  min-width: 44px;
+  background: #000;
+  color: #f00;
+  font: bold 22px/26px "Courier New", monospace;
+  text-align: center;
+  padding: 0 2px;
+  border: 1px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+.ms-face {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  cursor: default;
+}
+.ms-face:active {
+  border-color: #808080 #fff #fff #808080;
+}
+.ms-grid {
+  display: grid;
+  width: max-content;
+  border: 3px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+.ms-cell {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  background: #c0c0c0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: bold 12px Tahoma, Arial, sans-serif;
+  cursor: default;
+}
+.ms-cell.open {
+  border: none;
+  border-left: 1px solid #808080;
+  border-top: 1px solid #808080;
+}
+.ms-cell.boom {
+  background: #f00;
+}
+.ms-cell.wrong::after {
+  content: "\2715";
+  position: absolute;
+  color: #f00;
+  font-size: 14px;
+  font-weight: bold;
+}
+.ms-cell.n1 { color: #0000ff; }
+.ms-cell.n2 { color: #008000; }
+.ms-cell.n3 { color: #ff0000; }
+.ms-cell.n4 { color: #000080; }
+.ms-cell.n5 { color: #800000; }
+.ms-cell.n6 { color: #008080; }
+.ms-cell.n7 { color: #000000; }
+.ms-cell.n8 { color: #808080; }
+.ms-note {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #000 #000 #fff;
+  box-shadow: 2px 2px 0 #000;
+  padding: 6px 12px;
+  font-size: 13px;
+  z-index: 6;
+}
+.ms-note-btn {
+  text-align: center;
+}
+.ms-best {
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 699px) {
+  .window.fit {
+    max-width: 100vw;
+    left: 0 !important;
+  }
+  .window.fit .content-body {
+    overflow-x: auto;
+  }
+}
+
+.content code {
+  font-family: "Courier New", monospace;
+}
+
+/* ---- Shut Down Webdows (Windows 95 style) ----------------------------- */
+.sd-dither {
+  position: fixed;
+  inset: 0;
+  z-index: 9850;
+  /* the classic 50% checkerboard that greyed out the desktop */
+  background: repeating-conic-gradient(rgba(0, 0, 0, 0.55) 0 25%, transparent 0 50%) 0 0 / 2px 2px;
+}
+.window.sd-dialog {
+  position: fixed;
+  z-index: 9900;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 94vw;
+  height: auto;
+  min-height: 0;
+  resize: none;
+}
+.sd-dialog .content-body,
+.sd-dialog .content {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+.sd-body {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 8px 6px 0;
+}
+.sd-icon {
+  font-size: 34px;
+  color: #000080;
+  margin-top: 4px;
+}
+.sd-body p {
+  margin: 0 0 8px;
+}
+.sd-option {
+  display: block;
+  margin: 4px 0;
+  cursor: default;
+}
+.sd-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+}
+.sd-buttons .button {
+  min-width: 70px;
+}
+.sd-buttons .button[disabled] {
+  color: #808080;
+  text-shadow: 1px 1px 0 #fff;
+}
+.sd-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9950;
+}
+.sd-shutting {
+  background: #6fa3d8 no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sd-shutting p {
+  margin: 0 0 9vh;
+  font: bold clamp(16px, 2.2vw, 28px) tahoma, sans-serif;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000080;
+}
+.sd-black {
+  background: #000;
+  color: #c0c0c0;
+}
+.sd-dos {
+  margin: 20px;
+  font: 16px/1.4 "Consolas", "Courier New", monospace;
+  color: #c0c0c0;
+  white-space: pre-wrap;
+}
+.sd-safe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  text-align: center;
+}
+.sd-safe p {
+  margin: 0;
+  font: bold clamp(22px, 4vw, 48px) tahoma, sans-serif;
+  color: #ff8c1a;
+}
+.sd-safe small {
+  margin-top: 24px;
+  color: #555;
+  font-family: tahoma, sans-serif;
 }
