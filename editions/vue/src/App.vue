@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from "vue";
-import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, type Edition } from "../../core/src";
+import { onMounted, onUnmounted } from "vue";
+import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, showShutdown, type Edition } from "../../core/src";
 import { useStore } from "./useStore";
-import { EDITION, LOGO, SOUND } from "./assets";
+import { EDITION, IMG, LOGO, SOUND } from "./assets";
 import PostScreen from "./PostScreen.vue";
 import PromptScreen from "./PromptScreen.vue";
 import BiosSetup from "./BiosSetup.vue";
@@ -13,7 +13,6 @@ const boot = new BootSequence(() => playWelcome(SOUND));
 const bios = new BiosController();
 const wm = new WindowManager(EDITION, LOGO);
 const bootState = useStore(boot.state);
-const rebooting = ref<string | null>(null);
 const others = EDITIONS.filter((e) => e.key !== EDITION.key);
 
 // Global keys: Del enters setup during boot, Esc skips the boot, the BIOS takes every key while open
@@ -35,10 +34,9 @@ function enterBios() {
   boot.enterBios();
 }
 
+// Windows 95-style Shut Down dialog, shared by every edition
 function reboot(ed: Edition) {
-  wm.closeAll();
-  rebooting.value = ed.name;
-  setTimeout(() => (location.href = editionHref(EDITION.key, ed)), 1500);
+  showShutdown({ from: EDITION, to: ed, screen: IMG + "loading-vue.jpg", href: editionHref(EDITION.key, ed) });
 }
 
 onMounted(() => {
@@ -58,7 +56,4 @@ onUnmounted(() => {
   <BiosSetup v-if="bootState.phase === 'bios'" :bios="bios" @exit="boot.exitBios()" />
   <DesktopArea :wm="wm" />
   <TaskBar :wm="wm" :editions="others" @reboot="reboot" />
-  <div v-if="rebooting" id="reboot" style="display: block">
-    <p>Shutting down Webdows... Rebooting into the {{ rebooting }} Edition.</p>
-  </div>
 </template>

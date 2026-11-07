@@ -292,13 +292,13 @@ $(function () {
       });
       return;
     }
-    $(".window").remove();
-    $("#tasks").empty();
-    $("#reboot-text").text("Shutting down Webdows... Rebooting into the " + ed.name + " Edition.");
-    $("#reboot").show();
-    setTimeout(function () {
-      location.href = key + "/index.html";
-    }, 1500);
+    // Windows 95-style Shut Down dialog, shared with the framework editions (js/shutdown.js)
+    WebdowsShutdown.showShutdown({
+      from: { key: "js", name: "JavaScript" },
+      to: { key: key, name: ed.name },
+      screen: "img/loading.png",
+      href: key + "/index.html"
+    });
   });
 
   // ---- Windows -------------------------------------------------------------

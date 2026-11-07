@@ -1,5 +1,5 @@
-import { Component, HostListener, OnDestroy, OnInit, signal } from "@angular/core";
-import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, type Edition } from "../../../core/src";
+import { Component, HostListener, OnDestroy, OnInit } from "@angular/core";
+import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, showShutdown, type Edition } from "../../../core/src";
 import { EDITION, IMG, LOGO, SOUND, fromStore } from "./shared";
 import { PostScreen, PromptScreen } from "./boot";
 import { BiosSetup } from "./bios";
@@ -18,9 +18,6 @@ import { TaskBar } from "./taskbar";
     }
     <app-desktop [wm]="wm" [state]="wm$()" />
     <app-taskbar [wm]="wm" [state]="wm$()" [editions]="others" (reboot)="reboot($event)" />
-    @if (rebooting()) {
-      <div id="reboot" style="display: block"><p>Shutting down Webdows... Rebooting into the {{ rebooting() }} Edition.</p></div>
-    }
   `
 })
 export class App implements OnInit, OnDestroy {
@@ -31,7 +28,6 @@ export class App implements OnInit, OnDestroy {
   readonly bios$ = fromStore(this.bios.state);
   readonly wm$ = fromStore(this.wm.state);
   readonly others = EDITIONS.filter((e) => e.key !== EDITION.key);
-  readonly rebooting = signal<string | null>(null);
   readonly loadingImg = `url(${IMG}loading-angular.jpg)`;
 
   ngOnInit(): void {
@@ -62,9 +58,8 @@ export class App implements OnInit, OnDestroy {
     this.boot.enterBios();
   }
 
+  // Windows 95-style Shut Down dialog, shared by every edition
   reboot(ed: Edition): void {
-    this.wm.closeAll();
-    this.rebooting.set(ed.name);
-    setTimeout(() => (location.href = editionHref(EDITION.key, ed)), 1500);
+    showShutdown({ from: EDITION, to: ed, screen: `${IMG}loading-angular.jpg`, href: editionHref(EDITION.key, ed) });
   }
 }

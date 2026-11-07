@@ -513,17 +513,7 @@ table.bios-table > tbody > tr > td.bios-val {
   }
 }
 
-/* ---- Reboot into another edition --------------------------------------- */
-#reboot {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9800;
-  background: #000;
-  color: #fff;
-  font-family: "Consolas", "Courier New", monospace;
-  padding: 20px;
-}
+/* ---- Framework editions (tray) ------------------------------------- */
 .tray-edition {
   cursor: pointer;
 }
@@ -946,4 +936,112 @@ table.bios-table > tbody > tr > td.bios-val {
   .window.fit .content-body {
     overflow-x: auto;
   }
+}
+
+.content code {
+  font-family: "Courier New", monospace;
+}
+
+/* ---- Shut Down Webdows (Windows 95 style) ----------------------------- */
+.sd-dither {
+  position: fixed;
+  inset: 0;
+  z-index: 9850;
+  /* the classic 50% checkerboard that greyed out the desktop */
+  background: repeating-conic-gradient(rgba(0, 0, 0, 0.55) 0 25%, transparent 0 50%) 0 0 / 2px 2px;
+}
+.window.sd-dialog {
+  position: fixed;
+  z-index: 9900;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 94vw;
+  height: auto;
+  min-height: 0;
+  resize: none;
+}
+.sd-dialog .content-body,
+.sd-dialog .content {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+.sd-body {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 8px 6px 0;
+}
+.sd-icon {
+  font-size: 34px;
+  color: #000080;
+  margin-top: 4px;
+}
+.sd-body p {
+  margin: 0 0 8px;
+}
+.sd-option {
+  display: block;
+  margin: 4px 0;
+  cursor: default;
+}
+.sd-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+.sd-buttons .button {
+  min-width: 70px;
+}
+.sd-buttons .button[disabled] {
+  color: #808080;
+  text-shadow: 1px 1px 0 #fff;
+}
+.sd-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9950;
+}
+.sd-shutting {
+  background: #6fa3d8 no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sd-shutting p {
+  margin: 0 0 9vh;
+  font: bold clamp(16px, 2.2vw, 28px) tahoma, sans-serif;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000080;
+}
+.sd-black {
+  background: #000;
+  color: #c0c0c0;
+}
+.sd-dos {
+  margin: 20px;
+  font: 16px/1.4 "Consolas", "Courier New", monospace;
+  color: #c0c0c0;
+  white-space: pre-wrap;
+}
+.sd-safe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  text-align: center;
+}
+.sd-safe p {
+  margin: 0;
+  font: bold clamp(22px, 4vw, 48px) tahoma, sans-serif;
+  color: #ff8c1a;
+}
+.sd-safe small {
+  margin-top: 24px;
+  color: #555;
+  font-family: tahoma, sans-serif;
 }

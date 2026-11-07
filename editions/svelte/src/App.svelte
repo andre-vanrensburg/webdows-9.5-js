@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy, onMount } from "svelte";
-  import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, type Edition } from "../../core/src";
+  import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, showShutdown, type Edition } from "../../core/src";
   import { EDITION, LOGO, SOUND, IMG } from "./assets";
   import PostScreen from "./PostScreen.svelte";
   import PromptScreen from "./PromptScreen.svelte";
@@ -13,7 +13,6 @@
   const wm = new WindowManager(EDITION, LOGO);
   const bootState = boot.state;
   const others = EDITIONS.filter((e) => e.key !== EDITION.key);
-  let rebooting = $state<string | null>(null);
 
   function enterBios() {
     if (!boot.canEnterBios()) return;
@@ -34,10 +33,9 @@
     } else if (e.key === "Escape") boot.skip();
   }
 
+  // Windows 95-style Shut Down dialog, shared by every edition
   function reboot(ed: Edition) {
-    wm.closeAll();
-    rebooting = ed.name;
-    setTimeout(() => (location.href = editionHref(EDITION.key, ed)), 1500);
+    showShutdown({ from: EDITION, to: ed, screen: IMG + "loading-svelte.jpg", href: editionHref(EDITION.key, ed) });
   }
 
   onMount(() => boot.start());
@@ -52,6 +50,3 @@
 {#if $bootState.phase === "bios"}<BiosSetup {bios} onexit={() => boot.exitBios()} />{/if}
 <Desktop {wm} />
 <TaskBar {wm} editions={others} onreboot={reboot} />
-{#if rebooting}
-  <div id="reboot" style="display: block"><p>Shutting down Webdows... Rebooting into the {rebooting} Edition.</p></div>
-{/if}

@@ -1,7 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
-import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, Edition } from "../../core/src";
+import { useEffect, useMemo } from "react";
+import { BootSequence, BiosController, WindowManager, EDITIONS, editionHref, playWelcome, showShutdown, Edition } from "../../core/src";
 import { useStore } from "./useStore";
-import { EDITION, LOGO, SOUND } from "./assets";
+import { EDITION, IMG, LOGO, SOUND } from "./assets";
 import { Post, Prompt, Loading } from "./Boot";
 import { Bios } from "./Bios";
 import { Desktop } from "./Desktop";
@@ -12,7 +12,6 @@ export function App() {
   const bios = useMemo(() => new BiosController(), []);
   const wm = useMemo(() => new WindowManager(EDITION, LOGO), []);
   const { phase } = useStore(boot.state);
-  const [rebooting, setRebooting] = useState<string | null>(null);
 
   useEffect(() => {
     boot.start();
@@ -44,11 +43,9 @@ export function App() {
     boot.enterBios();
   };
 
-  const reboot = (ed: Edition) => {
-    wm.closeAll();
-    setRebooting(ed.name);
-    setTimeout(() => (location.href = editionHref(EDITION.key, ed)), 1500);
-  };
+  // Windows 95-style Shut Down dialog, shared by every edition
+  const reboot = (ed: Edition) =>
+    showShutdown({ from: EDITION, to: ed, screen: IMG + "loading-react.jpg", href: editionHref(EDITION.key, ed) });
 
   return (
     <>
@@ -58,11 +55,6 @@ export function App() {
       {phase === "bios" && <Bios bios={bios} onExit={() => boot.exitBios()} />}
       <Desktop wm={wm} />
       <Taskbar wm={wm} editions={EDITIONS.filter((e) => e.key !== EDITION.key)} onReboot={reboot} />
-      {rebooting && (
-        <div id="reboot" style={{ display: "block" }}>
-          <p>Shutting down Webdows... Rebooting into the {rebooting} Edition.</p>
-        </div>
-      )}
     </>
   );
 }

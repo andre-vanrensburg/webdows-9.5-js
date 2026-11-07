@@ -6,3 +6,4 @@ export * from "./windows";
 export * from "./drag";
 export * from "./minesweeper";
 export * from "./dom";
+export * from "./shutdown";
